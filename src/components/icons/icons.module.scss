@@ -1,0 +1,10 @@
+/* Base for every inline glyph. Reproduces the layout behaviour of MUI's
+   SvgIcon root so the icons sit in their existing flex rows unchanged. */
+.glyph {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  user-select: none;
+}

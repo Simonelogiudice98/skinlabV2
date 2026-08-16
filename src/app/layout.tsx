@@ -1,6 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+import { DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.scss";
+
+/* Self-hosted by next/font at build time — no runtime request to Google.
+   Both families are variable, so the whole weight range costs one file each.
+
+   Display: Playfair Display — a Scotch Roman revival. Vertical stress and a
+   hairline-to-stem contrast that matches the brand board's headline setting,
+   and it holds that contrast at the very large sizes it is used at here.
+   Body: DM Sans — a warm, low-contrast geometric sans with open apertures.
+   Reads cleanly at 15px and tracks well as wide uppercase micro-labels. */
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-display",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
 
 // TODO: replace with the production domain once it exists.
 // Placeholder resolution order: Vercel preview deployment URL, then local dev.
@@ -47,10 +68,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-      </body>
+    <html
+      lang="en"
+      className={`${playfairDisplay.variable} ${dmSans.variable}`}
+    >
+      <body>{children}</body>
     </html>
   );
 }

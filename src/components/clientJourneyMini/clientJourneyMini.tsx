@@ -1,6 +1,6 @@
 import "./clientJourneyMini.scss";
 
-import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
+import { PersonRoundedIcon } from "../icons/icons";
 
 type Step = {
   title: string;

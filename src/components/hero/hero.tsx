@@ -1,6 +1,6 @@
 import "./hero.scss";
 import Pill from "../pill/pill";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { InfoOutlinedIcon } from "../icons/icons";
 import BookConsultationButton from "../bookConsultationButton/BookConsultationButton";
 import ClientJourneyMini from "../clientJourneyMini/clientJourneyMini";
 

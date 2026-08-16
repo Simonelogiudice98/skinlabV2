@@ -1,0 +1,196 @@
+/* About — pilot section for the redesigned system.
+   Every value below resolves to a token in app/globals.scss. */
+
+.section {
+  /* Oat Latte band against the Eggshell page: section identity from a tonal
+     shift alone, no extra elements, no card, no shadow. */
+  background: var(--color-surface);
+  padding-block: var(--section-y);
+  scroll-margin-top: var(--scroll-offset);
+}
+
+.inner {
+  width: min(var(--container), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+}
+
+/* ---------------------------------------------------------------- header */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+/* The signature detail of the brand: small, wide-tracked uppercase. */
+.eyebrow {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label-lg);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.standfirst {
+  max-width: var(--measure-narrow);
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink-soft);
+  text-wrap: balance;
+}
+
+/* ------------------------------------------------------------------ body */
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: var(--space-xl);
+  align-items: start;
+  margin-block-start: var(--space-3xl);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+
+  /* Body copy is never allowed to run the full column width. */
+  max-width: var(--measure);
+
+  p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-ink-soft);
+  }
+}
+
+.portrait {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+
+  /* Sized container, so the fill image causes no layout shift. */
+  aspect-ratio: 4 / 5;
+}
+
+.portraitImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Crops the empty wall above the founder's head. */
+  object-position: 50% 42%;
+}
+
+/* ------------------------------------------------------------ philosophy */
+
+.philosophy {
+  margin-block-start: var(--section-y-tight);
+}
+
+/* Centred label flanked by hairline rules — the board's divider device. */
+.ruleLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label-lg);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1 1 var(--space-lg);
+    height: var(--hairline);
+    background: var(--color-rule-strong);
+  }
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xl);
+  margin-block-start: var(--space-2xl);
+}
+
+.pillar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  /* Separation is a hairline, never a border box or a shadow. */
+  & + .pillar {
+    padding-inline-start: var(--space-xl);
+    border-inline-start: var(--hairline) solid var(--color-rule);
+  }
+
+  p {
+    font-size: var(--text-sm);
+    line-height: var(--leading-loose);
+    color: var(--color-ink-soft);
+  }
+}
+
+.pillarTitle {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+/* ----------------------------------------------------------- responsive */
+
+@media (max-width: 60rem) {
+  .body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-xl);
+    margin-block-start: var(--space-2xl);
+  }
+
+  /* Portrait leads on narrow screens, copy follows. */
+  .portrait {
+    order: -1;
+    aspect-ratio: 4 / 3;
+  }
+
+  .copy {
+    max-width: var(--measure);
+    margin-inline: auto;
+  }
+
+  .pillars {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .pillar + .pillar {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+    padding-block-start: var(--space-lg);
+    border-block-start: var(--hairline) solid var(--color-rule);
+  }
+}
+
+@media (max-width: 30rem) {
+  .ruleLabel {
+    gap: var(--space-sm);
+  }
+}

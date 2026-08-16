@@ -1,35 +1,263 @@
+/* =========================================================================
+   The Medical Skin Lab — design tokens
+   -------------------------------------------------------------------------
+   This file IS the design system. Every component consumes these custom
+   properties; no component stylesheet may declare a raw hex value, a raw px
+   spacing value or a raw font size. If a value is needed and missing, it is
+   added here first.
+
+   Source of truth: docs/palette.jpeg
+   ========================================================================= */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* ---------------------------------------------------------------------
+     1. Brand palette — the only six hues in the system.
+     --------------------------------------------------------------------- */
+  --color-bg: #f0ebdd; /* Eggshell     — the page */
+  --color-surface: #e7e2d6; /* Oat Latte    — alternating band */
+  --color-surface-alt: #b9ac8c; /* Stone        — hairlines, secondary surface */
+  --color-accent-warm: #ddbaae; /* Dusty Blush  — the rarest accent */
+  --color-accent: #818265; /* Muted Sage   — primary action, small marks */
+  --color-ink: #4a372f; /* Roman Coffee — text, one dark band */
 
-  /* Brand palette — The Medical Skin Lab */
-  --eggshell: #f0ebdd;
-  --oat: #e7e2d6;
-  --stone: #b9ac9c;
-  --blush: #ddbaae;
-  --sage: #818265;
-  --coffee: #4a372f;
+  /* ---------------------------------------------------------------------
+     2. Derived tints / shades / alphas. All are mixes of the six above —
+        no new hue is introduced.
+     --------------------------------------------------------------------- */
 
-  /* Roles */
-  --bg: var(--eggshell);
-  --surface: var(--oat);
-  --surface-raised: #fbf9f3;
-  --text: #2f241e;
-  --text-soft: rgba(74, 55, 47, 0.78);
-  --text-faint: rgba(74, 55, 47, 0.62);
-  --border: rgba(74, 55, 47, 0.16);
-  --border-soft: rgba(74, 55, 47, 0.1);
-  --shadow: rgba(74, 55, 47, 0.12);
+  /* Ink. Two text weights only: full and soft. Secondary information is
+     differentiated by size and weight, not by fading the colour further —
+     anything lighter than --color-ink-soft fails 4.5:1 on Eggshell. */
+  --color-ink-soft: rgba(74, 55, 47, 0.75); /* 4.7:1 on Eggshell */
+  --color-ink-faint: rgba(74, 55, 47, 0.5); /* decorative strokes only */
 
-  --accent: var(--sage);
-  --accent-soft: rgba(129, 130, 101, 0.18);
-  /* Sage darkened until eggshell text on it clears 4.5:1. */
-  --accent-deep: #6b6c51;
-  --accent-ink: var(--eggshell);
-  --blush-soft: rgba(221, 186, 174, 0.38);
+  /* Hairlines. Separation is Stone, never a shadow. */
+  --color-rule: rgba(185, 172, 140, 0.7);
+  --color-rule-strong: #b9ac8c;
+  --color-rule-on-ink: rgba(240, 235, 221, 0.24);
+
+  /* Sage. The raw brand sage is 3.4:1 against Eggshell — fine as a mark,
+     not as a button ground. --color-accent-deep is sage shaded until
+     Eggshell text on it clears 4.5:1. */
+  --color-accent-deep: #6b6c51;
+  --color-accent-deeper: #5b5c45;
+  --color-accent-soft: rgba(129, 130, 101, 0.14);
+
+  /* Blush. Reserved for a single quiet moment per page. */
+  --color-accent-warm-soft: rgba(221, 186, 174, 0.5);
+
+  /* Text set on a coloured ground. */
+  --color-on-accent: #f0ebdd;
+  --color-on-ink: #f0ebdd;
+  --color-on-ink-soft: rgba(240, 235, 221, 0.76);
+
+  --color-focus: #6b6c51;
+
+  /* ---------------------------------------------------------------------
+     3. Typography
+     --------------------------------------------------------------------- */
+
+  /* --font-display / --font-sans are injected on <html> by next/font
+     (see app/layout.tsx). The fallbacks here keep the cascade sane if a
+     stylesheet is ever evaluated outside the app shell. */
+  --family-display: var(--font-display), "Iowan Old Style", Georgia, serif;
+  --family-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+
+  --text-2xs: 0.6875rem; /* 11px — micro-labels */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.8125rem; /* 13px */
+  --text-base: 0.9375rem; /* 15px — body */
+  --text-md: 1.0625rem; /* 17px */
+  --text-lg: clamp(1.0625rem, 0.99rem + 0.35vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.11rem + 0.7vw, 1.625rem);
+  --text-2xl: clamp(1.5rem, 1.26rem + 1.15vw, 2.125rem);
+  --text-3xl: clamp(1.875rem, 1.42rem + 2.2vw, 3rem);
+  --text-4xl: clamp(2.375rem, 1.63rem + 3.5vw, 4.25rem);
+
+  --leading-tight: 1.12;
+  --leading-snug: 1.28;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+  --leading-loose: 1.9;
+
+  --tracking-display: -0.018em;
+  --tracking-tight: -0.008em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-label: 0.16em;
+  --tracking-label-lg: 0.22em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  /* Measure. Body copy is never allowed to run the full container width. */
+  --measure-narrow: 46ch;
+  --measure: 62ch;
+  --measure-wide: 72ch;
+
+  /* ---------------------------------------------------------------------
+     4. Spacing — a single 4px-derived scale.
+     --------------------------------------------------------------------- */
+  --space-3xs: 0.25rem; /*   4 */
+  --space-2xs: 0.5rem; /*   8 */
+  --space-xs: 0.75rem; /*  12 */
+  --space-sm: 1rem; /*  16 */
+  --space-md: 1.5rem; /*  24 */
+  --space-lg: 2rem; /*  32 */
+  --space-xl: 3rem; /*  48 */
+  --space-2xl: 4rem; /*  64 */
+  --space-3xl: 6rem; /*  96 */
+  --space-4xl: 8rem; /* 128 */
+
+  /* Vertical rhythm between sections — the single biggest contributor to
+     the premium feel, so it is deliberately generous. */
+  --section-y: clamp(4rem, 8vw, 8rem);
+  --section-y-tight: clamp(2.5rem, 5vw, 4.5rem);
+
+  /* ---------------------------------------------------------------------
+     5. Radii — one scale, applied everywhere. No mixing sharp and round.
+     --------------------------------------------------------------------- */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-pill: 999px;
+
+  /* ---------------------------------------------------------------------
+     6. Layout
+     --------------------------------------------------------------------- */
+  --container-wide: 78rem; /* 1248px */
+  --container: 68rem; /* 1088px */
+  --container-narrow: 46rem; /*  736px */
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --hairline: 1px;
+
+  /* The header is sticky, so in-page anchors must clear it. */
+  --header-height: 4.5rem;
+  --scroll-offset: calc(var(--header-height) + var(--space-md));
+
+  /* ---------------------------------------------------------------------
+     7. Motion
+     --------------------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-base: 260ms;
+
+  /* =====================================================================
+     TEMPORARY — legacy variable aliases.
+
+     Phase 1 redesigns one section. Every section not yet migrated still
+     reads the pre-redesign variable names, so they are aliased onto the new
+     tokens here to keep the page coherent mid-migration.
+
+     This whole block is deleted at the end of the migration. Nothing new
+     may be written against these names.
+     ===================================================================== */
+  --eggshell: var(--color-bg);
+  --oat: var(--color-surface);
+  --stone: var(--color-surface-alt);
+  --blush: var(--color-accent-warm);
+  --sage: var(--color-accent);
+  --coffee: var(--color-ink);
+
+  --bg: var(--color-bg);
+  --surface: var(--color-surface);
+  --surface-raised: #f6f2e7; /* Eggshell lifted — no pure white */
+  --text: var(--color-ink);
+  --text-soft: var(--color-ink-soft);
+  --text-faint: var(--color-ink-faint);
+  --border: var(--color-rule);
+  --border-soft: rgba(185, 172, 140, 0.45);
+  --shadow: rgba(74, 55, 47, 0.08);
+
+  --accent: var(--color-accent);
+  --accent-soft: var(--color-accent-soft);
+  --accent-deep: var(--color-accent-deep);
+  --accent-ink: var(--color-on-accent);
+  --blush-soft: var(--color-accent-warm-soft);
+}
+
+/* =========================================================================
+   Base
+   ========================================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+
+  font-family: var(--family-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--family-display);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--color-accent-warm-soft);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

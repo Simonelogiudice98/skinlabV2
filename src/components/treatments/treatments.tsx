@@ -10,10 +10,12 @@ import type {
 } from "../../interfaces/skinLab.types";
 import BookConsultationButton from "../../components/bookConsultationButton/BookConsultationButton";
 
-import StarIcon from "@mui/icons-material/Star";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import {
+  AccessTimeIcon,
+  CalendarMonthOutlinedIcon,
+  CheckCircleOutlineIcon,
+  StarIcon,
+} from "../icons/icons";
 
 interface Props {
   content: TreatmentsContent;
