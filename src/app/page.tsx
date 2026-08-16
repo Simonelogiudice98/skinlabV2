@@ -1,6 +1,6 @@
 import Footer from "../components/footer/footer";
 import Header from "../components/header/header";
-import styles from "../assets/commonStyles/commonStyles.module.scss";
+import styles from "./page.module.scss";
 import {
   concerns,
   philosophy,

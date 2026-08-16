@@ -1,0 +1,111 @@
+.hero {
+  /* Eggshell ground. The two radial gradients that used to sit here are gone:
+     separation now comes from the tonal step into the Oat Latte band below. */
+  background: var(--color-bg);
+  padding-block: var(--section-y) var(--section-y-tight);
+}
+
+.inner {
+  width: min(var(--container-wide), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------- copy */
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.eyebrow {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label-lg);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.title {
+  /* The tight measure is what makes this heading a composition rather than a
+     string that wraps wherever the container ends. Combined with the block
+     accent below, it reads: statement line, then the three concerns. */
+  max-width: var(--measure-display);
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-ink);
+}
+
+.accent {
+  /* Block, so the concerns always start their own line regardless of width.
+     Balanced within itself so the three concerns split evenly instead of
+     leaving "Rosacea" orphaned on a line of its own. */
+  display: block;
+  font-style: italic;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: var(--measure);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-ink-soft);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-block-start: var(--space-2xs);
+}
+
+/* Hairline outline, no fill, no shadow — the quiet half of the pair. */
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+
+  padding-block: var(--space-xs);
+  padding-inline: var(--space-md);
+  border-radius: var(--radius-pill);
+  border: var(--hairline) solid var(--color-rule-strong);
+
+  color: var(--color-ink);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    background: var(--color-surface);
+    border-color: var(--color-ink-soft);
+  }
+}
+
+.ghostIcon {
+  font-size: var(--text-md);
+  color: var(--color-accent-deep);
+}
+
+.journey {
+  margin-block-start: var(--section-y-tight);
+}
+
+@media (max-width: 48rem) {
+  .title {
+    /* At small widths the tight measure would break the first line awkwardly;
+       the container is already narrower than the intended composition. */
+    max-width: none;
+  }
+}

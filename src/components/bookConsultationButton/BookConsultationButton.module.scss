@@ -1,0 +1,38 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-block: var(--space-xs);
+  padding-inline: var(--space-md);
+  border-radius: var(--radius-pill);
+  border: var(--hairline) solid transparent;
+
+  background: var(--color-accent-deep);
+  color: var(--color-on-accent);
+
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: background-color var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    background: var(--color-accent-deeper);
+  }
+}
+
+/* On the Roman Coffee band, Sage would sit at 2.8:1 against the ground.
+   The button inverts instead: Eggshell on Coffee, 9.4:1. */
+.onDark {
+  background: var(--color-bg);
+  color: var(--color-ink);
+
+  &:hover {
+    background: var(--color-surface);
+  }
+}

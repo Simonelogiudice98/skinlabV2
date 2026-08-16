@@ -1,0 +1,116 @@
+/* Modelled on the board's approach row: a centred label between hairlines,
+   then evenly spaced columns separated by thin rules. No cards, no boxes,
+   no shadows — the rules do all the work. */
+
+.journey {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.ruleLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label-lg);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1 1 var(--space-lg);
+    height: var(--hairline);
+    background: var(--color-rule-strong);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  text-align: center;
+
+  & + .step {
+    padding-inline-start: var(--space-lg);
+    border-inline-start: var(--hairline) solid var(--color-rule);
+  }
+}
+
+.icon {
+  /* Bare glyph in Sage — the filled circle behind it is gone. */
+  font-size: var(--text-xl);
+  color: var(--color-accent-deep);
+  line-height: 1;
+}
+
+.title {
+  font-family: var(--family-sans);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-snug);
+  text-transform: uppercase;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+/* Short centred hairline under the label. */
+.divider {
+  width: var(--space-lg);
+  height: var(--hairline);
+  background: var(--color-rule-strong);
+  margin-block: var(--space-3xs);
+}
+
+.desc {
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  color: var(--color-ink-soft);
+}
+
+@media (max-width: 60rem) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg) var(--space-md);
+  }
+
+  /* At two columns the rule belongs between the pair, not before every item. */
+  .step + .step {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+
+  .step:nth-child(even) {
+    padding-inline-start: var(--space-md);
+    border-inline-start: var(--hairline) solid var(--color-rule);
+  }
+}
+
+@media (max-width: 36rem) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .step:nth-child(even) {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+
+  .step + .step {
+    padding-block-start: var(--space-lg);
+    border-block-start: var(--hairline) solid var(--color-rule);
+  }
+}

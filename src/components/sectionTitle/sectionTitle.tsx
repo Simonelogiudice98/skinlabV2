@@ -1,21 +1,18 @@
-import './sectionTitle.scss';
-import Pill from '../pill/pill';
+import styles from "./sectionTitle.module.scss";
 
 type Props = {
   overline: string;
   title: string;
   subtitle?: string;
-  /** Renders the pill and the heading in capitals, leaving the subtitle as is. */
-  uppercase?: boolean;
 };
 
-const SectionTitle: React.FC<Props> = ({ overline, title, subtitle, uppercase }) => {
+const SectionTitle: React.FC<Props> = ({ overline, title, subtitle }) => {
   return (
-    <header className={`sectionHeader ${uppercase ? "sectionHeaderCaps" : ""}`}>
-      <Pill>{overline}</Pill>
-      <h2 className="h2">{title}</h2>
-      {subtitle && <p className="sub">{subtitle}</p>}
+    <header className={styles.header}>
+      <p className={styles.eyebrow}>{overline}</p>
+      <h2 className={styles.title}>{title}</h2>
+      {subtitle && <p className={styles.standfirst}>{subtitle}</p>}
     </header>
   );
-}
-export default SectionTitle
+};
+export default SectionTitle;

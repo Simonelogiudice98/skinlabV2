@@ -1,0 +1,111 @@
+.section {
+  /* Eggshell, alternating against the Oat Latte band above. */
+  background: var(--color-bg);
+  padding-block: var(--section-y);
+  scroll-margin-top: var(--scroll-offset);
+}
+
+.inner {
+  width: min(var(--container), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin-block-start: var(--space-3xl);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: var(--hairline) solid var(--color-rule);
+
+  /* Tonal step, not elevation: Oat Latte on the Eggshell ground. */
+  background: var(--color-surface);
+
+  transition: border-color var(--dur-base) var(--ease-out);
+
+  &:hover {
+    border-color: var(--color-rule-strong);
+  }
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.icon {
+  display: flex;
+  color: var(--color-accent-deep);
+}
+
+.cardTitle {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+.cardText {
+  margin-block-start: var(--space-sm);
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  color: var(--color-ink-soft);
+}
+
+.divider {
+  height: var(--hairline);
+  background: var(--color-rule);
+  margin-block: var(--space-md);
+}
+
+.label {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-block-start: var(--space-xs);
+}
+
+/* Hairline-separated rows rather than bullets. */
+.listItem {
+  padding-block: var(--space-2xs);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-ink);
+
+  & + .listItem {
+    border-block-start: var(--hairline) solid var(--color-rule);
+  }
+}
+
+@media (max-width: 60rem) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: var(--measure-narrow);
+    margin-inline: auto;
+    margin-block-start: var(--space-2xl);
+  }
+}

@@ -91,7 +91,11 @@
   --weight-medium: 500;
   --weight-semibold: 600;
 
-  /* Measure. Body copy is never allowed to run the full container width. */
+  /* Measure. Body copy is never allowed to run the full container width.
+     --measure-display is deliberately tight: display headings are
+     compositions, and this is what forces them to break where intended
+     instead of wherever the container happens to end. */
+  --measure-display: 26ch;
   --measure-narrow: 46ch;
   --measure: 62ch;
   --measure-wide: 72ch;
@@ -138,45 +142,32 @@
   --header-height: 4.5rem;
   --scroll-offset: calc(var(--header-height) + var(--space-md));
 
+  --logo-height: 2.75rem;
+  --logo-height-compact: 2.25rem;
+
+  /* Breakpoint ladder.
+     Custom properties are not valid inside a media query condition, so these
+     cannot be consumed as var(). They are declared here anyway because the
+     ladder is part of the system: component stylesheets must pick from this
+     list and add nothing to it.
+
+       36rem / 576px — single column
+       44rem / 704px — card grids collapse to one
+       48rem / 768px — display heading drops its composed measure
+       54rem / 864px — header text links collapse (the CTA never does)
+       60rem / 960px — two-column layouts collapse */
+  --bp-xs: 36rem;
+  --bp-sm: 44rem;
+  --bp-md: 48rem;
+  --bp-lg: 54rem;
+  --bp-xl: 60rem;
+
   /* ---------------------------------------------------------------------
      7. Motion
      --------------------------------------------------------------------- */
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur-fast: 150ms;
   --dur-base: 260ms;
-
-  /* =====================================================================
-     TEMPORARY — legacy variable aliases.
-
-     Phase 1 redesigns one section. Every section not yet migrated still
-     reads the pre-redesign variable names, so they are aliased onto the new
-     tokens here to keep the page coherent mid-migration.
-
-     This whole block is deleted at the end of the migration. Nothing new
-     may be written against these names.
-     ===================================================================== */
-  --eggshell: var(--color-bg);
-  --oat: var(--color-surface);
-  --stone: var(--color-surface-alt);
-  --blush: var(--color-accent-warm);
-  --sage: var(--color-accent);
-  --coffee: var(--color-ink);
-
-  --bg: var(--color-bg);
-  --surface: var(--color-surface);
-  --surface-raised: #f6f2e7; /* Eggshell lifted — no pure white */
-  --text: var(--color-ink);
-  --text-soft: var(--color-ink-soft);
-  --text-faint: var(--color-ink-faint);
-  --border: var(--color-rule);
-  --border-soft: rgba(185, 172, 140, 0.45);
-  --shadow: rgba(74, 55, 47, 0.08);
-
-  --accent: var(--color-accent);
-  --accent-soft: var(--color-accent-soft);
-  --accent-deep: var(--color-accent-deep);
-  --accent-ink: var(--color-on-accent);
-  --blush-soft: var(--color-accent-warm-soft);
 }
 
 /* =========================================================================

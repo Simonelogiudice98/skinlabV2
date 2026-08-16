@@ -1,25 +1,28 @@
 import Image from "next/image";
-import "./header.scss";
+import styles from "./header.module.scss";
 import logo from "../../assets/img/skinlabLogo.svg";
-import BookConsultationButton from "../../components/bookConsultationButton/BookConsultationButton";
+import BookConsultationButton from "../bookConsultationButton/BookConsultationButton";
 
 const Header: React.FC = () => {
   return (
-    <nav className="nav">
-      <div className="navInner">
-        {/* Intrinsic width/height come from the static import (273.5 x 101.7);
-            the inline style reproduces the source sizing exactly. `eager`
-            matches the plain <img> the source used, which was never lazy. */}
-        <Image
-          src={logo}
-          alt="logo"
-          loading="eager"
-          style={{ height: "60px", width: "auto", display: "block" }}
-        />
-        <div className="navLinks">
-          <a href="#about">About</a>
-          <a href="#concerns">Skin Concerns</a>
-          <a href="#treatments">Treatments</a>
+    <nav className={styles.nav}>
+      <div className={styles.inner}>
+        {/* Intrinsic width/height come from the static import (273.5 x 101.7),
+            so the CSS height + auto width keeps the aspect ratio and reserves
+            the box before load. `eager` matches the plain <img> the source
+            used, which was never lazy. */}
+        <Image src={logo} alt="logo" loading="eager" className={styles.logo} />
+
+        <div className={styles.links}>
+          <a className={styles.link} href="#about">
+            About
+          </a>
+          <a className={styles.link} href="#concerns">
+            Skin Concerns
+          </a>
+          <a className={styles.link} href="#treatments">
+            Treatments
+          </a>
           <BookConsultationButton />
         </div>
       </div>

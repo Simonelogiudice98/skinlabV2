@@ -1,0 +1,482 @@
+.section {
+  /* Oat Latte band. Every card inside steps back down to Eggshell, so the
+     hierarchy is two tonal steps rather than a shadow. */
+  background: var(--color-surface);
+  padding-block: var(--section-y) 0;
+  scroll-margin-top: var(--scroll-offset);
+}
+
+.inner {
+  width: min(var(--container-wide), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+  padding-block-end: var(--section-y);
+}
+
+/* ------------------------------------------------------------ primitives */
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: var(--hairline) solid var(--color-rule);
+  background: var(--color-bg);
+}
+
+/* Centred label between hairlines — the group separator for the menu. */
+.ruleLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+
+  margin-block: var(--section-y-tight) var(--space-2xl);
+
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label-lg);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1 1 var(--space-lg);
+    height: var(--hairline);
+    background: var(--color-rule-strong);
+  }
+}
+
+.cardTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.cardTitle {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+/* Prices are set in the display serif: they read as part of the editorial
+   composition instead of as a tag pinned to the corner. */
+.price {
+  flex-shrink: 0;
+  font-family: var(--family-display);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-accent-deep);
+  white-space: nowrap;
+}
+
+.text {
+  margin-block-start: var(--space-sm);
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  color: var(--color-ink-soft);
+}
+
+.note {
+  margin-block-start: var(--space-md);
+  padding-block-start: var(--space-md);
+  border-block-start: var(--hairline) solid var(--color-rule);
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+  color: var(--color-ink-soft);
+}
+
+.divider {
+  height: var(--hairline);
+  background: var(--color-rule);
+  margin-block: var(--space-md);
+}
+
+/* ------------------------------------------------------------- includes */
+
+.includes {
+  margin-block-start: var(--space-md);
+}
+
+.includesHeading {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.includesList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-block-start: var(--space-xs);
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.includeItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+}
+
+.includeIcon {
+  font-size: var(--text-base);
+  color: var(--color-accent-deep);
+  margin-block-start: var(--space-3xs);
+}
+
+.includeDash {
+  color: var(--color-accent-deep);
+  line-height: var(--leading-normal);
+  flex-shrink: 0;
+}
+
+.includeBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  min-width: 0;
+}
+
+.includeText {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-ink);
+
+  &.strong {
+    font-weight: var(--weight-medium);
+  }
+}
+
+.includeNote {
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+  font-style: italic;
+  color: var(--color-ink-soft);
+}
+
+/* ------------------------------------------------------------ meta boxes */
+
+.metaGroup {
+  display: grid;
+  gap: var(--space-sm);
+  margin-block-start: var(--space-md);
+}
+
+.meta {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+
+  padding-block-start: var(--space-sm);
+  border-block-start: var(--hairline) solid var(--color-rule);
+}
+
+.metaIcon {
+  font-size: var(--text-md);
+  color: var(--color-accent-deep);
+  margin-block-start: var(--space-3xs);
+}
+
+.metaBody {
+  min-width: 0;
+}
+
+.metaHeading {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.metaLine {
+  margin-block-start: var(--space-3xs);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-ink);
+}
+
+.metaNote {
+  margin-block-start: var(--space-2xs);
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+  color: var(--color-ink-soft);
+}
+
+/* -------------------------------------------------------- signature plan */
+
+.signature {
+  margin-block-start: var(--space-3xl);
+}
+
+.signatureTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+/* The single Dusty Blush moment on the page. */
+.signatureBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+
+  padding-block: var(--space-3xs);
+  padding-inline: var(--space-xs);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-warm-soft);
+
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.signatureBadgeIcon {
+  font-size: var(--text-sm);
+}
+
+.signatureTitle {
+  max-width: var(--measure-display);
+  margin-block-start: var(--space-sm);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-ink);
+}
+
+.signaturePrice {
+  font-size: var(--text-2xl);
+}
+
+.signatureBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+  margin-block-start: var(--space-lg);
+}
+
+.signatureMain p {
+  max-width: var(--measure);
+}
+
+/* --------------------------------------------------------------- grids */
+
+.planGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.benefitsCard {
+  grid-column: 1 / -1;
+}
+
+.sessionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+
+  margin-block-start: var(--space-md);
+  padding: var(--space-xs);
+  border-radius: var(--radius-md);
+  border: var(--hairline) solid var(--color-rule);
+  background: var(--color-accent-soft);
+
+  p {
+    font-size: var(--text-xs);
+    line-height: var(--leading-relaxed);
+    color: var(--color-ink);
+  }
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+
+  margin-block-start: auto;
+  padding-block-start: var(--space-md);
+  border-block-start: var(--hairline) solid var(--color-rule);
+
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.durationIcon {
+  font-size: var(--text-base);
+  color: var(--color-accent-deep);
+}
+
+/* --------------------------------------------------------- consultation */
+
+.consultation {
+  margin-block-start: var(--space-md);
+}
+
+.consultationNote {
+  margin-block-start: var(--space-md);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-relaxed);
+  color: var(--color-ink);
+}
+
+/* ----------------------------------------------------------- info cards */
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  align-items: start;
+  margin-block-start: var(--space-md);
+}
+
+.infoHeading {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+.infoSubtitle {
+  margin-block-start: var(--space-2xs);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-ink-soft);
+}
+
+.infoText {
+  margin-block-start: var(--space-sm);
+  max-width: var(--measure);
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  color: var(--color-ink-soft);
+}
+
+.infoList {
+  margin-block-start: var(--space-md);
+}
+
+/* ------------------------------------------------------- closing band */
+
+/* The page's one dark Roman Coffee band. Full bleed, so it breaks out of
+   the section wrapper while staying inside the Treatments section. */
+.closing {
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+  padding-block: var(--section-y);
+}
+
+.closingInner {
+  width: min(var(--container), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.closingBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  min-width: 0;
+}
+
+.closingTitle {
+  /* Rendered on <p>/<div>, so the display family has to be set explicitly. */
+  font-family: var(--family-display);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-on-ink);
+}
+
+.closingText {
+  margin-block-start: var(--space-sm);
+  max-width: var(--measure);
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  color: var(--color-on-ink-soft);
+}
+
+.closingSplit {
+  padding-block-start: var(--space-lg);
+  border-block-start: var(--hairline) solid var(--color-rule-on-ink);
+}
+
+.closingSub {
+  margin-block-start: var(--space-2xs);
+  max-width: var(--measure);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-on-ink-soft);
+}
+
+/* ---------------------------------------------------------- responsive */
+
+@media (max-width: 60rem) {
+  .signatureBody {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .planGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .benefitsCard {
+    grid-column: auto;
+  }
+
+  .infoGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .closingInner {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+  }
+}
+
+@media (max-width: 44rem) {
+  .planGrid,
+  .sessionGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .signatureTop,
+  .cardTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2xs);
+  }
+
+  .card {
+    padding: var(--space-md);
+  }
+}

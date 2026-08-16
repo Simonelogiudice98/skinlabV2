@@ -14,42 +14,7 @@
   margin-inline: auto;
 }
 
-/* ---------------------------------------------------------------- header */
-
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-md);
-  text-align: center;
-}
-
-/* The signature detail of the brand: small, wide-tracked uppercase. */
-.eyebrow {
-  font-size: var(--text-2xs);
-  font-weight: var(--weight-medium);
-  letter-spacing: var(--tracking-label-lg);
-  line-height: var(--leading-normal);
-  text-transform: uppercase;
-  color: var(--color-ink-soft);
-}
-
-.title {
-  font-size: var(--text-3xl);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-display);
-  color: var(--color-ink);
-  text-wrap: balance;
-}
-
-.standfirst {
-  max-width: var(--measure-narrow);
-  font-size: var(--text-lg);
-  line-height: var(--leading-snug);
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-ink-soft);
-  text-wrap: balance;
-}
+/* The section header comes from the shared SectionTitle primitive. */
 
 /* ------------------------------------------------------------------ body */
 

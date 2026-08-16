@@ -1,0 +1,61 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  background: var(--color-bg);
+  border-block-end: var(--hairline) solid var(--color-rule);
+}
+
+.inner {
+  width: min(var(--container-wide), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+
+  min-height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.logo {
+  display: block;
+  height: var(--logo-height);
+  width: auto;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* Nav items are micro-labels, like every other small label in the system. */
+.link {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-ink-soft);
+  transition: color var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--color-ink);
+  }
+}
+
+@media (max-width: 54rem) {
+  .logo {
+    height: var(--logo-height-compact);
+  }
+
+  /* The text links collapse, but the primary action never does. */
+  .link {
+    display: none;
+  }
+
+  .links {
+    gap: var(--space-sm);
+  }
+}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./about.module.scss";
 import profileImg from "../../assets/images/about/profile.jpg";
 import type { PhilosophyPillar } from "../../interfaces/skinLab.types";
+import SectionTitle from "../sectionTitle/sectionTitle";
 
 type Props = {
   philosophy: PhilosophyPillar[];
@@ -11,13 +12,11 @@ const AboutSection: React.FC<Props> = ({ philosophy }) => {
   return (
     <section id="about" className={styles.section}>
       <div className={styles.inner}>
-        <header className={styles.header}>
-          <p className={styles.eyebrow}>About The Medical Skin Lab</p>
-          <h2 className={styles.title}>Science. Care. Results.</h2>
-          <p className={styles.standfirst}>
-            Clinical expertise. Personalised care. Skin focused results.
-          </p>
-        </header>
+        <SectionTitle
+          overline="About The Medical Skin Lab"
+          title="Science. Care. Results."
+          subtitle="Clinical expertise. Personalised care. Skin focused results."
+        />
 
         <div className={styles.body}>
           <div className={styles.copy}>

@@ -1,10 +1,9 @@
 import type { Concern } from "../../interfaces/skinLab.types";
-import styles from "../../assets/commonStyles/commonStyles.module.scss";
-import "./concerns.scss";
-import SectionTitle from "../../components/sectionTitle/sectionTitle";
+import styles from "./concerns.module.scss";
+import SectionTitle from "../sectionTitle/sectionTitle";
 
 import { Sun, Layers, Shield, Sparkles } from "lucide-react";
-import BookConsultationButton from "../../components/bookConsultationButton/BookConsultationButton";
+import BookConsultationButton from "../bookConsultationButton/BookConsultationButton";
 
 type Props = {
   concerns: Concern[];
@@ -19,34 +18,37 @@ const iconByTitle: Record<string, React.ReactNode> = {
 const ConcernsSection: React.FC<Props> = ({ concerns }) => {
   return (
     <section id="concerns" className={styles.section}>
-      <div className={styles.container}>
-        <div className="concernsHeader">
+      <div className={styles.inner}>
+        <div className={styles.header}>
           <SectionTitle
             overline="Skin concerns"
             title="Skin concerns we treat"
           />
           <BookConsultationButton />
         </div>
-        <div className="grid1">
+
+        <div className={styles.grid}>
           {concerns.map((c) => (
             <article key={c.title} className={styles.card}>
-              <div className="cardHead">
-                <div className="iconBadge" aria-hidden="true">
+              <div className={styles.cardHead}>
+                <span className={styles.icon} aria-hidden="true">
                   {iconByTitle[c.title] ?? (
                     <Sparkles size={20} strokeWidth={1.6} />
                   )}
-                </div>
-                <h3 className="h3">{c.title}</h3>
+                </span>
+                <h3 className={styles.cardTitle}>{c.title}</h3>
               </div>
 
-              <p className="cardText">{c.description}</p>
+              <p className={styles.cardText}>{c.description}</p>
 
-              <div className="cardDivider" />
+              <div className={styles.divider} />
 
-              <div className="smallLabel">Recommended treatments</div>
-              <ul className="list">
+              <div className={styles.label}>Recommended treatments</div>
+              <ul className={styles.list}>
                 {c.treatments.map((t) => (
-                  <li key={t}>{t}</li>
+                  <li key={t} className={styles.listItem}>
+                    {t}
+                  </li>
                 ))}
               </ul>
             </article>

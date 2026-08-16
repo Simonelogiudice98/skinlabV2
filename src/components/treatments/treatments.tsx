@@ -1,6 +1,5 @@
-import styles from "../../assets/commonStyles/commonStyles.module.scss";
-import SectionTitle from "../../components/sectionTitle/sectionTitle";
-import "./treatments.scss";
+import SectionTitle from "../sectionTitle/sectionTitle";
+import styles from "./treatments.module.scss";
 import type {
   IncludeItem,
   InfoList,
@@ -8,7 +7,7 @@ import type {
   MetaBox,
   TreatmentsContent,
 } from "../../interfaces/skinLab.types";
-import BookConsultationButton from "../../components/bookConsultationButton/BookConsultationButton";
+import BookConsultationButton from "../bookConsultationButton/BookConsultationButton";
 
 import {
   AccessTimeIcon,
@@ -31,31 +30,30 @@ function IncludeList({
   variant?: "check" | "dash";
 }) {
   return (
-    <div className="treatIncludes">
-      <div className="treatIncludesHeading">{heading}</div>
-      <ul className={`treatIncludesList treatIncludesList--${variant}`}>
+    <div className={styles.includes}>
+      <div className={styles.includesHeading}>{heading}</div>
+      <ul className={styles.includesList}>
         {items.map((item) => (
-          <li key={item.text} className="treatIncludeItem">
+          <li key={item.text} className={styles.includeItem}>
             {variant === "check" ? (
-              <CheckCircleOutlineIcon
-                className="treatIncludeIcon"
-                aria-hidden="true"
-              />
+              <CheckCircleOutlineIcon className={styles.includeIcon} />
             ) : (
-              <span className="treatIncludeDash" aria-hidden="true">
+              <span className={styles.includeDash} aria-hidden="true">
                 ·
               </span>
             )}
-            <div>
+            <div className={styles.includeBody}>
               <span
                 className={
-                  item.strong ? "treatIncludeText is-strong" : "treatIncludeText"
+                  item.strong
+                    ? `${styles.includeText} ${styles.strong}`
+                    : styles.includeText
                 }
               >
                 {item.text}
               </span>
               {item.note ? (
-                <em className="treatIncludeNote">{item.note}</em>
+                <em className={styles.includeNote}>{item.note}</em>
               ) : null}
             </div>
           </li>
@@ -67,16 +65,16 @@ function IncludeList({
 
 function MetaBoxRow({ box }: { box: MetaBox }) {
   return (
-    <div className="treatMeta">
-      <CalendarMonthOutlinedIcon className="treatMetaIcon" aria-hidden="true" />
-      <div className="treatMetaBody">
-        <div className="treatMetaHeading">{box.heading}</div>
+    <div className={styles.meta}>
+      <CalendarMonthOutlinedIcon className={styles.metaIcon} />
+      <div className={styles.metaBody}>
+        <div className={styles.metaHeading}>{box.heading}</div>
         {box.lines.map((line) => (
-          <div key={line} className="treatMetaLine">
+          <div key={line} className={styles.metaLine}>
             {line}
           </div>
         ))}
-        {box.note ? <p className="treatMetaNote">{box.note}</p> : null}
+        {box.note ? <p className={styles.metaNote}>{box.note}</p> : null}
       </div>
     </div>
   );
@@ -84,15 +82,12 @@ function MetaBoxRow({ box }: { box: MetaBox }) {
 
 function CheckList({ items }: { items: string[] }) {
   return (
-    <ul className="treatIncludesList treatIncludesList--check">
+    <ul className={`${styles.includesList} ${styles.infoList}`}>
       {items.map((item) => (
-        <li key={item} className="treatIncludeItem">
-          <CheckCircleOutlineIcon
-            className="treatIncludeIcon"
-            aria-hidden="true"
-          />
-          <div>
-            <span className="treatIncludeText">{item}</span>
+        <li key={item} className={styles.includeItem}>
+          <CheckCircleOutlineIcon className={styles.includeIcon} />
+          <div className={styles.includeBody}>
+            <span className={styles.includeText}>{item}</span>
           </div>
         </li>
       ))}
@@ -108,10 +103,10 @@ function InfoListCard({
   className?: string;
 }) {
   return (
-    <div className={className ? `treatInfoCard ${className}` : "treatInfoCard"}>
-      <h3 className="treatInfoHeading">{list.heading}</h3>
+    <div className={className ? `${styles.card} ${className}` : styles.card}>
+      <h3 className={styles.infoHeading}>{list.heading}</h3>
       {list.subtitle ? (
-        <p className="treatInfoSubtitle">{list.subtitle}</p>
+        <p className={styles.infoSubtitle}>{list.subtitle}</p>
       ) : null}
       <CheckList items={list.items} />
     </div>
@@ -120,25 +115,27 @@ function InfoListCard({
 
 function MembershipCard({ membership }: { membership: Membership }) {
   return (
-    <div className="treatInfoCard">
-      <h3 className="treatInfoHeading">{membership.heading}</h3>
-      <p className="treatInfoSubtitle">{membership.subtitle}</p>
+    <div className={styles.card}>
+      <h3 className={styles.infoHeading}>{membership.heading}</h3>
+      <p className={styles.infoSubtitle}>{membership.subtitle}</p>
 
       {membership.intro.map((p) => (
-        <p key={p} className="treatInfoText">
+        <p key={p} className={styles.infoText}>
           {p}
         </p>
       ))}
 
-      <div className="treatDivider" />
+      <div className={styles.divider} />
 
-      <div className="treatIncludesHeading">{membership.benefitsHeading}</div>
+      <div className={styles.includesHeading}>{membership.benefitsHeading}</div>
       <CheckList items={membership.benefits} />
 
-      <div className="treatDivider" />
+      <div className={styles.divider} />
 
-      <div className="treatIncludesHeading">{membership.membershipHeading}</div>
-      <p className="treatInfoText">{membership.membershipText}</p>
+      <div className={styles.includesHeading}>
+        {membership.membershipHeading}
+      </div>
+      <p className={styles.infoText}>{membership.membershipText}</p>
     </div>
   );
 }
@@ -158,170 +155,161 @@ export default function TreatmentsSection({ content }: Props) {
 
   return (
     <section id="treatments" className={styles.section}>
-      <div className={styles.container}>
-        <div className={styles.panel}>
-          <SectionTitle overline="Treatments" title="Treatment Menu" />
+      <div className={styles.inner}>
+        <SectionTitle overline="Treatments" title="Treatment Menu" />
 
-          <article className={`${styles.card} signatureCard`}>
-            <div className="signatureTop">
-              <div className="signatureHead">
-                <div className="signatureBadge">
-                  <StarIcon className="signatureBadgeIcon" aria-hidden="true" />
-                  {signaturePlan.badge}
-                </div>
-                <h3 className="signatureTitle">{signaturePlan.title}</h3>
-              </div>
-              <span className="priceFrom">{signaturePlan.price}</span>
-            </div>
-
-            <div className="signatureBody">
-              <div className="signatureMain">
-                {signaturePlan.paragraphs.map((p) => (
-                  <p key={p} className="cardText">
-                    {p}
-                  </p>
-                ))}
-
-                <IncludeList
-                  heading={signaturePlan.includesHeading}
-                  items={signaturePlan.includes}
-                />
-              </div>
-
-              <aside className="signatureSide">
-                <MetaBoxRow box={signaturePlan.sideBox} />
-              </aside>
-            </div>
-          </article>
-
-          <h3 className="treatGroupHeading">{plansHeading}</h3>
-          <div className="planGrid">
-            {plans.map((plan) => (
-              <article
-                key={plan.title}
-                className={`${styles.card} treatCard planCard`}
-              >
-                <div className="treatTop">
-                  <h4 className={styles.h3}>{plan.title}</h4>
-                  <span className="priceFrom">{plan.price}</span>
-                </div>
-
-                <p className="cardText">{plan.description}</p>
-                {plan.performedWith ? (
-                  <p className="cardText">{plan.performedWith}</p>
-                ) : null}
-
-                <IncludeList
-                  heading={plan.includesHeading}
-                  items={plan.includes}
-                />
-
-                <div className="treatMetaGroup">
-                  {plan.metaBoxes.map((box) => (
-                    <MetaBoxRow key={box.heading} box={box} />
-                  ))}
-                </div>
-
-                <p className="treatFooterNote">{plan.footerNote}</p>
-              </article>
-            ))}
-
-            {/* Last item of the plan grid: full width under the three plans on
-                desktop, and on tablet it fills the empty slot left beside the
-                third plan when the grid drops to two columns. */}
-            <InfoListCard list={plansBenefits} className="planBenefitsCard" />
-          </div>
-
-          <h3 className="treatGroupHeading">{sessionsHeading}</h3>
-          <div className="sessionGrid">
-            {sessions.map((session) => (
-              <article
-                key={session.title}
-                className={`${styles.card} treatCard sessionCard`}
-              >
-                <div className="treatTop">
-                  <h4 className={styles.h3}>{session.title}</h4>
-                  <span className="priceFrom">{session.price}</span>
-                </div>
-
-                <p className="cardText">{session.description}</p>
-
-                <IncludeList
-                  heading={session.includesHeading}
-                  items={session.includes}
-                  variant="dash"
-                />
-
-                {session.highlightNote ? (
-                  <div className="sessionHighlight">
-                    <CheckCircleOutlineIcon
-                      className="treatIncludeIcon"
-                      aria-hidden="true"
-                    />
-                    <p>{session.highlightNote}</p>
-                  </div>
-                ) : null}
-
-                <div className="sessionDuration">
-                  <AccessTimeIcon
-                    className="sessionDurationIcon"
-                    aria-hidden="true"
-                  />
-                  <span>{session.duration}</span>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="consultationBox">
-            <div className="treatTop">
-              <h3 className="consultationTitle">{consultation.title}</h3>
-              <span className="priceFrom">{consultation.price}</span>
-            </div>
-            <p className="cardText">{consultation.description}</p>
-            <p className="consultationNote">{consultation.boldNote}</p>
-          </div>
-
-          <div className="treatInfoGrid">
-            {infoLists.map((list) => (
-              <InfoListCard key={list.heading} list={list} />
-            ))}
-            <MembershipCard membership={membership} />
-          </div>
-
-          <div className="ctaRow">
+        <article className={`${styles.card} ${styles.signature}`}>
+          <div className={styles.signatureTop}>
             <div>
-              <div>
-                <p className="ctaTitle">Our Approach</p>
-                <p>
-                  At The Medical Skin Lab, we believe healthy skin is achieved
-                  through consistency, not quick fixes.
-                </p>
-                <p>
-                  Every treatment plan begins with a comprehensive consultation
-                  and is tailored using evidence based Mesoestetic treatment
-                  protocols. As your skin changes throughout your journey, your
-                  treatment plan evolves too, ensuring every appointment is
-                  personalised to achieve safe, effective and long lasting
-                  results.
-                </p>
-                <p>
-                  Our focus is simple: healthy skin, long term results and
-                  expert clinical care.
-                </p>
+              <div className={styles.signatureBadge}>
+                <StarIcon className={styles.signatureBadgeIcon} />
+                {signaturePlan.badge}
               </div>
-              <div>
-                <div className="ctaTitle">
-                  Not sure which treatment is right for you?
+              <h3 className={styles.signatureTitle}>{signaturePlan.title}</h3>
+            </div>
+            <span className={`${styles.price} ${styles.signaturePrice}`}>
+              {signaturePlan.price}
+            </span>
+          </div>
+
+          <div className={styles.signatureBody}>
+            <div className={styles.signatureMain}>
+              {signaturePlan.paragraphs.map((p) => (
+                <p key={p} className={styles.text}>
+                  {p}
+                </p>
+              ))}
+
+              <IncludeList
+                heading={signaturePlan.includesHeading}
+                items={signaturePlan.includes}
+              />
+            </div>
+
+            <aside>
+              <MetaBoxRow box={signaturePlan.sideBox} />
+            </aside>
+          </div>
+        </article>
+
+        <h3 className={styles.ruleLabel}>{plansHeading}</h3>
+        <div className={styles.planGrid}>
+          {plans.map((plan) => (
+            <article key={plan.title} className={styles.card}>
+              <div className={styles.cardTop}>
+                <h4 className={styles.cardTitle}>{plan.title}</h4>
+                <span className={styles.price}>{plan.price}</span>
+              </div>
+
+              <p className={styles.text}>{plan.description}</p>
+              {plan.performedWith ? (
+                <p className={styles.text}>{plan.performedWith}</p>
+              ) : null}
+
+              <IncludeList
+                heading={plan.includesHeading}
+                items={plan.includes}
+              />
+
+              <div className={styles.metaGroup}>
+                {plan.metaBoxes.map((box) => (
+                  <MetaBoxRow key={box.heading} box={box} />
+                ))}
+              </div>
+
+              <p className={styles.note}>{plan.footerNote}</p>
+            </article>
+          ))}
+
+          {/* Last item of the plan grid: full width under the three plans on
+              desktop, and on tablet it fills the empty slot left beside the
+              third plan when the grid drops to two columns. */}
+          <InfoListCard list={plansBenefits} className={styles.benefitsCard} />
+        </div>
+
+        <h3 className={styles.ruleLabel}>{sessionsHeading}</h3>
+        <div className={styles.sessionGrid}>
+          {sessions.map((session) => (
+            <article key={session.title} className={styles.card}>
+              <div className={styles.cardTop}>
+                <h4 className={styles.cardTitle}>{session.title}</h4>
+                <span className={styles.price}>{session.price}</span>
+              </div>
+
+              <p className={styles.text}>{session.description}</p>
+
+              <IncludeList
+                heading={session.includesHeading}
+                items={session.includes}
+                variant="dash"
+              />
+
+              {session.highlightNote ? (
+                <div className={styles.highlight}>
+                  <CheckCircleOutlineIcon className={styles.includeIcon} />
+                  <p>{session.highlightNote}</p>
                 </div>
-                <div className="ctaSub">
-                  Book a consultation and let us create a personalised plan for
-                  your skin.
-                </div>
+              ) : null}
+
+              <div className={styles.duration}>
+                <AccessTimeIcon className={styles.durationIcon} />
+                <span>{session.duration}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className={`${styles.card} ${styles.consultation}`}>
+          <div className={styles.cardTop}>
+            <h3 className={styles.cardTitle}>{consultation.title}</h3>
+            <span className={styles.price}>{consultation.price}</span>
+          </div>
+          <p className={styles.text}>{consultation.description}</p>
+          <p className={styles.consultationNote}>{consultation.boldNote}</p>
+        </div>
+
+        <div className={styles.infoGrid}>
+          {infoLists.map((list) => (
+            <InfoListCard key={list.heading} list={list} />
+          ))}
+          <MembershipCard membership={membership} />
+        </div>
+      </div>
+
+      {/* The page's one dark band: full bleed, still part of Treatments. */}
+      <div className={styles.closing}>
+        <div className={styles.closingInner}>
+          <div className={styles.closingBody}>
+            <div>
+              <p className={styles.closingTitle}>Our Approach</p>
+              <p className={styles.closingText}>
+                At The Medical Skin Lab, we believe healthy skin is achieved
+                through consistency, not quick fixes.
+              </p>
+              <p className={styles.closingText}>
+                Every treatment plan begins with a comprehensive consultation
+                and is tailored using evidence based Mesoestetic treatment
+                protocols. As your skin changes throughout your journey, your
+                treatment plan evolves too, ensuring every appointment is
+                personalised to achieve safe, effective and long lasting
+                results.
+              </p>
+              <p className={styles.closingText}>
+                Our focus is simple: healthy skin, long term results and expert
+                clinical care.
+              </p>
+            </div>
+            <div className={styles.closingSplit}>
+              <div className={styles.closingTitle}>
+                Not sure which treatment is right for you?
+              </div>
+              <div className={styles.closingSub}>
+                Book a consultation and let us create a personalised plan for
+                your skin.
               </div>
             </div>
-            <BookConsultationButton />
           </div>
+          <BookConsultationButton tone="onDark" />
         </div>
       </div>
     </section>

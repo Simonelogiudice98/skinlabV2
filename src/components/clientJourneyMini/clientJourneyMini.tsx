@@ -1,6 +1,6 @@
-import "./clientJourneyMini.scss";
+import styles from "./clientJourneyMini.module.scss";
 
-import { PersonRoundedIcon } from "../icons/icons";
+import { PersonRoundedIcon, type IconProps } from "../icons/icons";
 
 type Step = {
   title: string;
@@ -9,7 +9,7 @@ type Step = {
 };
 
 /* Ring of dots around a centre dot, as in the client's reference. */
-function DotsRingIcon({ className }: { className?: string }) {
+function DotsRingIcon(props: IconProps) {
   const dots = Array.from({ length: 8 }, (_, i) => {
     const angle = (i * Math.PI) / 4;
     return {
@@ -20,7 +20,7 @@ function DotsRingIcon({ className }: { className?: string }) {
 
   return (
     <svg
-      className={className}
+      {...props}
       viewBox="0 0 24 24"
       width="1em"
       height="1em"
@@ -35,10 +35,10 @@ function DotsRingIcon({ className }: { className?: string }) {
 }
 
 /* Calendar with a diagonal arrow inside, as in the client's reference. */
-function CalendarArrowIcon({ className }: { className?: string }) {
+function CalendarArrowIcon(props: IconProps) {
   return (
     <svg
-      className={className}
+      {...props}
       viewBox="0 0 24 24"
       width="1em"
       height="1em"
@@ -82,10 +82,10 @@ const STEPS: Step[] = [
 /* Orbit circle for the Circle membership card: a hand drawn ring broken by a
    thin gap at the top left, with the stroke overshooting itself along the
    bottom, around three stacked dots. */
-function OrbitCircleIcon({ className }: { className?: string }) {
+function OrbitCircleIcon(props: IconProps) {
   return (
     <svg
-      className={`${className ?? ""} journeyMiniIconOrbit`}
+      {...props}
       /* Cropped to the drawing so the thin ring is not padded like the
          filled glyphs are. */
       viewBox="1.6 1.6 21.2 21.3"
@@ -108,19 +108,17 @@ function OrbitCircleIcon({ className }: { className?: string }) {
 
 export default function ClientJourneyMini() {
   return (
-    <section className="journeyMini" aria-label="Your Skin Journey">
-      <h2 className="journeyMiniHeading">Your Skin Journey</h2>
+    <section className={styles.journey} aria-label="Your Skin Journey">
+      <h2 className={styles.ruleLabel}>Your Skin Journey</h2>
 
-      <div className="journeyMiniGrid">
+      <div className={styles.grid}>
         {STEPS.map(({ title, desc, Icon }) => (
-          <article key={title} className="journeyMiniCard">
-            <div className="journeyMiniIcon" aria-hidden="true">
-              <Icon className="journeyMiniIconSvg" />
-            </div>
+          <article key={title} className={styles.step}>
+            <Icon className={styles.icon} aria-hidden="true" />
 
-            <h3 className="journeyMiniTitle">{title}</h3>
-            <div className="journeyMiniDivider" />
-            <p className="journeyMiniDesc">{desc}</p>
+            <h3 className={styles.title}>{title}</h3>
+            <div className={styles.divider} />
+            <p className={styles.desc}>{desc}</p>
           </article>
         ))}
       </div>
