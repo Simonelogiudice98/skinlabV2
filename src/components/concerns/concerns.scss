@@ -1,0 +1,94 @@
+.grid1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+
+  @media (max-width: 980px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Visual test: the concern cards sit white on the page rather than blending
+   into it, as the Treatment Menu cards do. Border and shadow are unchanged. */
+#concerns .grid1 > article {
+  background: var(--surface-raised);
+
+  /* Same light lift as the Your Skin Journey cards. */
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 50px var(--shadow);
+    border-color: var(--accent);
+
+    .iconBadge {
+      background: var(--blush-soft);
+    }
+  }
+}
+
+.iconBadge {
+  transition: background 0.18s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #concerns .grid1 > article,
+  .iconBadge {
+    transition: none;
+  }
+
+  #concerns .grid1 > article:hover {
+    transform: none;
+  }
+}
+
+.card {
+  border-radius: 18px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface);
+  padding: 18px;
+}
+
+.concernsHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cardText {
+  margin: 10px 0 0;
+  color: var(--text-soft);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.cardDivider {
+  height: 1px;
+  background: var(--border-soft);
+  margin: 14px 0;
+}
+
+.iconBadge {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+
+  background: var(--accent-soft);
+  border: 1px solid var(--border-soft);
+  color: var(--text);
+}
+
+.h3 {
+  margin: 0;
+}

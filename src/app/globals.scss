@@ -1,0 +1,35 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Brand palette — The Medical Skin Lab */
+  --eggshell: #f0ebdd;
+  --oat: #e7e2d6;
+  --stone: #b9ac9c;
+  --blush: #ddbaae;
+  --sage: #818265;
+  --coffee: #4a372f;
+
+  /* Roles */
+  --bg: var(--eggshell);
+  --surface: var(--oat);
+  --surface-raised: #fbf9f3;
+  --text: #2f241e;
+  --text-soft: rgba(74, 55, 47, 0.78);
+  --text-faint: rgba(74, 55, 47, 0.62);
+  --border: rgba(74, 55, 47, 0.16);
+  --border-soft: rgba(74, 55, 47, 0.1);
+  --shadow: rgba(74, 55, 47, 0.12);
+
+  --accent: var(--sage);
+  --accent-soft: rgba(129, 130, 101, 0.18);
+  /* Sage darkened until eggshell text on it clears 4.5:1. */
+  --accent-deep: #6b6c51;
+  --accent-ink: var(--eggshell);
+  --blush-soft: rgba(221, 186, 174, 0.38);
+}
+
+body {
+  margin: 0;
+}

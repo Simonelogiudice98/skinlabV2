@@ -1,0 +1,29 @@
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 22px 0;
+}
+
+.footerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 12px;
+}
+
+.footerBrand {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1;
+}
+
+.footerLink {
+  color: var(--text-soft);
+  text-decoration: none;
+  font-weight: 800;
+    
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,135 @@
+.journeyMini {
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 20px;
+  box-shadow: 0 24px 70px var(--shadow);
+}
+
+.journeyMiniHeading {
+  margin: 2px 0 16px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.journeyMiniGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+
+  /* Tablets in portrait keep the four steps on a single line, as the client
+     asked. Only the gap tightens here; the card itself slims down below. */
+  @media (max-width: 1040px) {
+    gap: 10px;
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  @media (max-width: 620px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Between 700px and 1040px the four cards share a narrow row, so the padding
+   and type step down to keep the text readable. */
+@media (min-width: 701px) and (max-width: 1040px) {
+  .journeyMiniCard {
+    padding: 12px;
+  }
+
+  .journeyMiniIcon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .journeyMiniIconSvg {
+    font-size: 19px;
+  }
+
+  .journeyMiniIconOrbit {
+    font-size: 27px;
+  }
+
+  .journeyMiniTitle {
+    margin: 10px 0 8px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .journeyMiniDivider {
+    margin-bottom: 10px;
+  }
+
+  .journeyMiniDesc {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+}
+
+.journeyMiniCard {
+  position: relative;
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  border-radius: 18px;
+  padding: 16px;
+
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 50px var(--shadow);
+  }
+}
+
+.journeyMiniIcon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.journeyMiniIconSvg {
+  font-size: 22px;
+}
+
+/* The orbit ring is a thin outline, so it needs to run larger than the filled
+   glyphs to carry the same weight. */
+.journeyMiniIconOrbit {
+  font-size: 32px;
+}
+
+.journeyMiniTitle {
+  margin: 12px 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--text);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.journeyMiniDivider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 0 12px 0;
+}
+
+.journeyMiniDesc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-soft);
+}

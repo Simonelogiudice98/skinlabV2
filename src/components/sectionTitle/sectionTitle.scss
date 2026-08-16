@@ -1,0 +1,43 @@
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 18px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.sectionHeaderCaps {
+  text-transform: uppercase;
+
+  /* Extra air between the pill and the heading, without touching the
+     heading-to-subtitle gap. */
+  .h2 {
+    margin-top: 8px;
+  }
+
+  /* Standfirst, not body copy: larger and darker than the paragraphs below. */
+  .sub {
+    text-transform: none;
+    max-width: 62ch;
+    font-size: clamp(17px, 1.5vw, 20px);
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    color: var(--text);
+  }
+}
+
+.h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -0.6px;
+}
+
+.sub {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.7;
+}
