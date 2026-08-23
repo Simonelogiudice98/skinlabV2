@@ -1,0 +1,93 @@
+/* The one button in the system. Two fixed variants and nothing else:
+   `primary` is the filled Sage pill, `secondary` the hairline outline. Shape,
+   type and motion are shared — a variant only ever changes colour.
+
+   `onDark` is a surface adaptation, not a third variant: on the Roman Coffee
+   band raw Sage sits at 2.8:1 and the Stone hairline disappears, so both
+   variants re-anchor to Eggshell there. */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+
+  padding-block: var(--space-xs);
+  padding-inline: var(--space-md);
+  border-radius: var(--radius-pill);
+  border: var(--hairline) solid transparent;
+
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.primary {
+  background: var(--color-accent-deep);
+  color: var(--color-on-accent);
+
+  &:hover {
+    background: var(--color-accent-deeper);
+  }
+}
+
+.secondary {
+  border-color: var(--color-rule-strong);
+  color: var(--color-ink);
+
+  &:hover {
+    background: var(--color-surface);
+    border-color: var(--color-ink-soft);
+  }
+}
+
+.onDark {
+  &.primary {
+    background: var(--color-bg);
+    color: var(--color-ink);
+
+    &:hover {
+      background: var(--color-surface);
+    }
+  }
+
+  &.secondary {
+    border-color: var(--color-rule-on-ink);
+    color: var(--color-on-ink);
+
+    &:hover {
+      background: var(--color-rule-on-ink);
+      border-color: var(--color-on-ink-soft);
+    }
+  }
+}
+
+/* Glyphs are 1em, so the span's font-size is what scales them. */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: var(--text-md);
+}
+
+/* On the filled pill the glyph rides the label; on the outline it carries the
+   Sage accent, which is the only colour the quiet variant gets. */
+.primary .icon {
+  color: currentColor;
+}
+
+.secondary .icon {
+  color: var(--color-accent-deep);
+}
+
+.onDark.secondary .icon {
+  color: var(--color-on-ink-soft);
+}

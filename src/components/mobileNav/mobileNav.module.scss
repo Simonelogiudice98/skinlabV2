@@ -1,0 +1,114 @@
+/* Mobile navigation. Hidden entirely above the 54rem rung of the breakpoint
+   ladder — the same rung at which the header's text links and CTA collapse. */
+
+.root {
+  display: none;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--space-3xs);
+  border: 0;
+  background: none;
+  border-radius: var(--radius-xs);
+
+  color: var(--color-ink-soft);
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--color-ink);
+  }
+}
+
+/* Ink at half strength — the one overlay in the system, derived from the
+   palette rather than introduced as a new colour. */
+.scrim {
+  position: fixed;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: var(--color-ink-faint);
+  cursor: pointer;
+  animation: fade var(--dur-base) var(--ease-out);
+}
+
+/* Off-canvas sidebar: full height, anchored to the inline end, separated from
+   the page by the same Stone hairline used everywhere else. */
+.panel {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+  z-index: 1;
+
+  width: min(20rem, 82vw);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: var(--space-md);
+  background: var(--color-bg);
+  border-inline-start: var(--hairline) solid var(--color-rule);
+
+  animation: slideIn var(--dur-base) var(--ease-out);
+}
+
+.panelHead {
+  display: flex;
+  justify-content: flex-end;
+  min-height: var(--logo-height-compact);
+  align-items: center;
+  margin-block-end: var(--space-md);
+}
+
+/* Same micro-label treatment as the desktop header links, with a taller hit
+   area suited to touch. */
+.link {
+  padding-block: var(--space-sm);
+
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-ink-soft);
+  transition: color var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--color-ink);
+  }
+
+  & + .link {
+    border-block-start: var(--hairline) solid var(--color-rule);
+  }
+}
+
+/* The action sits at the foot of the drawer, clear of the link list. */
+.cta {
+  display: flex;
+  margin-block-start: auto;
+  padding-block-start: var(--space-lg);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 54rem) {
+  .root {
+    display: block;
+  }
+}

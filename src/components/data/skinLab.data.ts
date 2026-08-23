@@ -46,23 +46,13 @@ export const concerns: Concern[] = [
       "Post acne texture, pitting and dark marks can be improved through collagen stimulation and resurfacing. We create structured plans that rebuild the skin from within for smoother, refined texture.",
     treatments: ["Microneedling", "Chemical Peels", "Targeted resurfacing"],
   },
-  {
-    title: "Rosacea",
-    description:
-      "Rosacea requires a sensitive, clinical approach to reduce redness, inflammation and flare ups. We focus on calming reactive skin, strengthening the barrier and stabilising triggers.",
-    treatments: [
-      "Sensitive skin Peels",
-      "Barrier repair protocols",
-      "Clinical guidance",
-    ],
-  },
 ];
 
 export const treatmentsContent: TreatmentsContent = {
   signaturePlan: {
     badge: "Signature Treatment Plan",
     title: "Complete Skin Transformation Plan",
-    price: "£1,350",
+    price: "£2,200",
     paragraphs: [
       "Our most comprehensive treatment plan combines clinical microneedling and medical grade chemical peels to improve acne scarring, hyperpigmentation and uneven skin texture.",
       "Using evidence based Mesoestetic treatment protocols, your plan is tailored to your individual skin concerns to achieve safe, long lasting results.",
@@ -90,7 +80,7 @@ export const treatmentsContent: TreatmentsContent = {
   plans: [
     {
       title: "Skin Clarity Plan",
-      price: "£540",
+      price: "£1,050",
       description:
         "Designed for mild hyperpigmentation, post inflammatory pigmentation and uneven skin tone.",
       includesHeading: "Includes:",
@@ -112,7 +102,7 @@ export const treatmentsContent: TreatmentsContent = {
     },
     {
       title: "Acne Scar Plan",
-      price: "£585",
+      price: "£1,050",
       description:
         "Designed for mild to moderate acne scarring, enlarged pores and uneven skin texture.",
       performedWith:
@@ -136,7 +126,7 @@ export const treatmentsContent: TreatmentsContent = {
     },
     {
       title: "Advanced Scar Revision Plan",
-      price: "£760",
+      price: "£1,350",
       description:
         "Designed for moderate to advanced acne scarring and textural concerns.",
       performedWith:
@@ -175,7 +165,7 @@ export const treatmentsContent: TreatmentsContent = {
   sessions: [
     {
       title: "Clinical Chemical Peel",
-      price: "£140",
+      price: "£275",
       description:
         "Every treatment begins with a skin assessment to determine the most appropriate Mesoestetic peel for your skin on the day of treatment. As your skin improves, your peel protocol may be adjusted to ensure you continue achieving the best possible results.",
       includesHeading: "Includes:",
@@ -191,7 +181,7 @@ export const treatmentsContent: TreatmentsContent = {
     },
     {
       title: "Clinical Microneedling",
-      price: "£200",
+      price: "£350",
       description:
         "Performed using the Mesoestetic Axion Professional Microneedling System to improve acne scarring, pigmentation and skin texture through collagen stimulation.",
       includesHeading: "Includes:",

@@ -1,0 +1,35 @@
+/* Type styling for the wordmark lives here rather than on SVG presentation
+   attributes so the design tokens resolve as ordinary CSS. The numeric
+   font-size / letter-spacing values are viewBox user units, not screen px —
+   they are the geometry of the mark itself, which is why they are literals. */
+
+/* Guarantees the mark keeps the viewBox ratio when the consumer sets only a
+   height (`height: var(--logo-height); width: auto`), without those consumer
+   stylesheets having to change. */
+.svg {
+  aspect-ratio: 280 / 126;
+}
+
+.word {
+  fill: var(--color-ink);
+  font-family: var(--family-display);
+  font-size: 68px;
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-display);
+}
+
+.the {
+  fill: var(--color-ink);
+  font-family: var(--family-sans);
+  font-weight: var(--weight-medium);
+  font-size: 20px;
+  letter-spacing: 8px;
+}
+
+.skinlab {
+  fill: var(--color-ink);
+  font-family: var(--family-sans);
+  font-weight: var(--weight-medium);
+  font-size: 22px;
+  letter-spacing: 11px;
+}

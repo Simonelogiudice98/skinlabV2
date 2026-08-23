@@ -1,5 +1,6 @@
 import styles from "./hero.module.scss";
 import { InfoOutlinedIcon } from "../icons/icons";
+import Button from "../button/Button";
 import BookConsultationButton from "../bookConsultationButton/BookConsultationButton";
 import ClientJourneyMini from "../clientJourneyMini/clientJourneyMini";
 
@@ -25,10 +26,9 @@ const HeroSection: React.FC = () => {
           </p>
 
           <div className={styles.actions}>
-            <a className={styles.ghost} href="#about">
-              <InfoOutlinedIcon className={styles.ghostIcon} />
-              <span>Learn more</span>
-            </a>
+            <Button href="#about" variant="secondary" icon={<InfoOutlinedIcon />}>
+              Learn more
+            </Button>
             <BookConsultationButton />
           </div>
         </div>

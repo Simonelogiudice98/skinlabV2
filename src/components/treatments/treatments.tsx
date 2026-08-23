@@ -113,9 +113,15 @@ function InfoListCard({
   );
 }
 
-function MembershipCard({ membership }: { membership: Membership }) {
+function MembershipCard({
+  membership,
+  className,
+}: {
+  membership: Membership;
+  className?: string;
+}) {
   return (
-    <div className={styles.card}>
+    <div className={className ? `${styles.card} ${className}` : styles.card}>
       <h3 className={styles.infoHeading}>{membership.heading}</h3>
       <p className={styles.infoSubtitle}>{membership.subtitle}</p>
 
@@ -224,7 +230,10 @@ export default function TreatmentsSection({ content }: Props) {
           {/* Last item of the plan grid: full width under the three plans on
               desktop, and on tablet it fills the empty slot left beside the
               third plan when the grid drops to two columns. */}
-          <InfoListCard list={plansBenefits} className={styles.benefitsCard} />
+          <MembershipCard
+            membership={membership}
+            className={styles.benefitsCard}
+          />
         </div>
 
         <h3 className={styles.ruleLabel}>{sessionsHeading}</h3>
@@ -272,7 +281,7 @@ export default function TreatmentsSection({ content }: Props) {
           {infoLists.map((list) => (
             <InfoListCard key={list.heading} list={list} />
           ))}
-          <MembershipCard membership={membership} />
+          <InfoListCard list={plansBenefits} />
         </div>
       </div>
 
@@ -309,7 +318,7 @@ export default function TreatmentsSection({ content }: Props) {
               </div>
             </div>
           </div>
-          <BookConsultationButton tone="onDark" />
+          <BookConsultationButton variant="secondary" tone="onDark" />
         </div>
       </div>
     </section>

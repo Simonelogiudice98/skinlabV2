@@ -1,17 +1,13 @@
-import Image from "next/image";
 import styles from "./header.module.scss";
-import logo from "../../assets/img/skinlabLogo.svg";
+import Logo from "../logo/logo";
 import BookConsultationButton from "../bookConsultationButton/BookConsultationButton";
+import MobileNav from "../mobileNav/mobileNav";
 
 const Header: React.FC = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        {/* Intrinsic width/height come from the static import (273.5 x 101.7),
-            so the CSS height + auto width keeps the aspect ratio and reserves
-            the box before load. `eager` matches the plain <img> the source
-            used, which was never lazy. */}
-        <Image src={logo} alt="logo" loading="eager" className={styles.logo} />
+        <Logo className={styles.logo} />
 
         <div className={styles.links}>
           <a className={styles.link} href="#about">
@@ -23,7 +19,10 @@ const Header: React.FC = () => {
           <a className={styles.link} href="#treatments">
             Treatments
           </a>
-          <BookConsultationButton />
+          <span className={styles.cta}>
+            <BookConsultationButton />
+          </span>
+          <MobileNav />
         </div>
       </div>
     </nav>

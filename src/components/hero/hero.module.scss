@@ -63,41 +63,6 @@
   margin-block-start: var(--space-2xs);
 }
 
-/* Hairline outline, no fill, no shadow — the quiet half of the pair. */
-.ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2xs);
-
-  padding-block: var(--space-xs);
-  padding-inline: var(--space-md);
-  border-radius: var(--radius-pill);
-  border: var(--hairline) solid var(--color-rule-strong);
-
-  color: var(--color-ink);
-  font-size: var(--text-2xs);
-  font-weight: var(--weight-medium);
-  letter-spacing: var(--tracking-label);
-  line-height: var(--leading-normal);
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-
-  transition:
-    background-color var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-out);
-
-  &:hover {
-    background: var(--color-surface);
-    border-color: var(--color-ink-soft);
-  }
-}
-
-.ghostIcon {
-  font-size: var(--text-md);
-  color: var(--color-accent-deep);
-}
-
 .journey {
   margin-block-start: var(--section-y-tight);
 }

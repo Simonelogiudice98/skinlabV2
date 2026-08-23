@@ -21,16 +21,67 @@
   width: auto;
 }
 
-.link {
+/* ------------------------------------------------------------- details */
+
+/* Second row of the footer. Same container as .inner and separated from it by
+   the same Stone hairline the footer already uses at its top edge. */
+.details {
+  width: min(var(--container), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+
+  margin-block-start: var(--space-2xl);
+  padding-block-start: var(--space-lg);
+  border-block-start: var(--hairline) solid var(--color-rule);
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+  min-width: 0;
+}
+
+/* Same micro-label treatment as .link and every other label in the system. */
+.columnLabel {
   font-size: var(--text-2xs);
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-label);
+  line-height: var(--leading-normal);
   text-transform: uppercase;
-  text-decoration: none;
   color: var(--color-ink-soft);
-  transition: color var(--dur-fast) var(--ease-out);
+}
 
-  &:hover {
-    color: var(--color-ink);
+.columnText {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-ink);
+}
+
+/* Third-party marks ship on a white ground; multiply drops that ground onto
+   Eggshell without introducing a surface colour that is not in the palette. */
+.mark {
+  display: block;
+  height: var(--logo-height-compact);
+  width: auto;
+  margin-block-start: var(--space-3xs);
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 44rem) {
+  .details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md) var(--space-lg);
+  }
+}
+
+@media (max-width: 36rem) {
+  .details {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

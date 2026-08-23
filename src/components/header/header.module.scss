@@ -30,6 +30,12 @@
   gap: var(--space-lg);
 }
 
+/* Wrapper exists only so the CTA can be collapsed into the burger panel at
+   narrow widths without the button component having to know about it. */
+.cta {
+  display: inline-flex;
+}
+
 /* Nav items are micro-labels, like every other small label in the system. */
 .link {
   font-size: var(--text-2xs);
@@ -50,8 +56,12 @@
     height: var(--logo-height-compact);
   }
 
-  /* The text links collapse, but the primary action never does. */
-  .link {
+  /* Below this rung everything moves into the burger panel — text links and
+     the primary action alike. Keeping the CTA pill in the bar as well left no
+     room for the burger trigger, which overflowed the container and became
+     unreachable. The action is not lost: it is the last item in the panel. */
+  .link,
+  .cta {
     display: none;
   }
 
