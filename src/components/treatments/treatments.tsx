@@ -223,19 +223,7 @@ export default function TreatmentsSection({ content }: Props) {
                 <span className={styles.price}>{plan.price}</span>
               </div>
 
-              {/* On a plan with alternative pathways the description carries
-                  the distinguishing fact — that the route is chosen after the
-                  clinical assessment — so it is set as lead copy, not as the
-                  usual secondary paragraph. */}
-              <p
-                className={
-                  plan.pathways?.length
-                    ? `${styles.text} ${styles.lead}`
-                    : styles.text
-                }
-              >
-                {plan.description}
-              </p>
+              <p className={styles.text}>{plan.description}</p>
               {plan.performedWith ? (
                 <p className={styles.text}>{plan.performedWith}</p>
               ) : null}

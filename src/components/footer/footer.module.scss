@@ -226,8 +226,9 @@
     font-size: var(--text-2xl);
   }
 
-  /* Four groups do not fit here. Two by two, with the row gap opened up past
-     the column gap so the pairs do not read as one block. */
+  /* Four groups do not fit here. Two by two all the way down — never a single
+     stacked list, same rule the credentials band follows. The row gap is
+     opened up past the column gap so the pairs do not read as one block. */
   .info {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-2xl) var(--space-lg);
@@ -250,12 +251,6 @@
 }
 
 @media (max-width: 36rem) {
-  /* One column: the four groups stack in order, evenly spaced. */
-  .info {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-xl);
-  }
-
   /* Half a column is narrower than the marks' natural width at this height,
      so they scale down to fit rather than overflowing their cell. */
   .mark {

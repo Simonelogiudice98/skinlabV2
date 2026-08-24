@@ -81,14 +81,6 @@
   color: var(--color-ink-soft);
 }
 
-/* The plan description when it is carrying the card's distinguishing fact
-   rather than a supporting sentence: full ink, one step up in size. */
-.lead {
-  font-size: var(--text-md);
-  line-height: var(--leading-relaxed);
-  color: var(--color-ink);
-}
-
 .note {
   margin-block-start: var(--space-md);
   padding-block-start: var(--space-md);
@@ -360,7 +352,9 @@
   align-items: flex-start;
   gap: var(--space-2xs);
 
-  margin-block-start: var(--space-md);
+  /* .duration below pushes itself to the bottom with margin auto, so without
+     an explicit end margin this box ends up flush against its rule. */
+  margin-block: var(--space-md);
   padding: var(--space-xs);
   border-radius: var(--radius-md);
   border: var(--hairline) solid var(--color-rule);
