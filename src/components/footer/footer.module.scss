@@ -1,40 +1,89 @@
+/* The footer follows the page's one dark Roman Coffee band, so it cannot open
+   with small print — it needs its own mast. The structure is four bands
+   separated by Stone hairlines: statement, information, credentials, legal.
+   Every band shares the .inner container width so their rules line up. */
+
 .footer {
   background: var(--color-bg);
   border-block-start: var(--hairline) solid var(--color-rule);
-  padding-block: var(--space-2xl);
+  padding-block: var(--space-2xl) var(--space-lg);
 }
 
-.inner {
+/* Shared band geometry. Each band is a row in the same measure, and every
+   band after the first is separated from the one above by a hairline. */
+.anchor,
+.info,
+.credentials,
+.legal {
   width: min(var(--container), 100% - var(--gutter) * 2);
   margin-inline: auto;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-lg);
-  flex-wrap: wrap;
+.info,
+.credentials,
+.legal {
+  margin-block-start: var(--space-xl);
+  padding-block-start: var(--space-xl);
+  border-block-start: var(--hairline) solid var(--color-rule);
+}
+
+/* ------------------------------------------------------------- 1. anchor */
+
+.anchor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-xl);
+  align-items: end;
+}
+
+/* The wordmark sits above the statement rather than beside it: the page
+   opens on the header lockup and closes on the same one, and stacking keeps
+   the mast a single left-aligned composition instead of two floating pieces.
+   The logo is left-aligned to the statement's own edge, so the SVG's centred
+   text has to be pulled back by its internal side bearing. */
+.mast {
+  min-width: 0;
 }
 
 .logo {
   display: block;
-  height: var(--logo-height-compact);
+  height: var(--logo-height);
   width: auto;
+  margin-block-end: var(--space-lg);
+  margin-inline-start: calc(var(--space-2xs) * -1);
 }
 
-/* ------------------------------------------------------------- details */
+/* The footer's one bold move. The clinic's own closing sentence, set at
+   display scale on a tight measure so it breaks into a composition rather
+   than a paragraph. Everything below it reads as apparatus because of it. */
+.statement {
+  max-width: var(--measure-display);
+  margin: 0;
 
-/* Second row of the footer. Same container as .inner and separated from it by
-   the same Stone hairline the footer already uses at its top edge. */
-.details {
-  width: min(var(--container), 100% - var(--gutter) * 2);
-  margin-inline: auto;
+  font-family: var(--family-display);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-ink);
+  text-wrap: balance;
+}
 
-  margin-block-start: var(--space-2xl);
-  padding-block-start: var(--space-lg);
-  border-block-start: var(--hairline) solid var(--color-rule);
+/* Same italic device the hero uses on its accent clause — the emphasis is a
+   system behaviour, not a new one invented for the footer. */
+.statementAccent {
+  font-style: italic;
+}
 
+.anchorAside {
+  display: flex;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------- 2. info */
+
+.info {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-lg);
   align-items: start;
 }
@@ -43,45 +92,142 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-2xs);
   min-width: 0;
 }
 
-/* Same micro-label treatment as .link and every other label in the system. */
+/* Micro-label, same treatment as the header links and every other label in
+   the system. Rendered on <h2> for the outline, so the heading defaults have
+   to be reset explicitly. */
 .columnLabel {
+  margin: 0 0 var(--space-sm);
+
+  font-family: var(--family-sans);
   font-size: var(--text-2xs);
   font-weight: var(--weight-medium);
-  letter-spacing: var(--tracking-label);
+  letter-spacing: var(--tracking-label-lg);
   line-height: var(--leading-normal);
   text-transform: uppercase;
   color: var(--color-ink-soft);
 }
 
 .columnText {
-  font-size: var(--text-sm);
-  line-height: var(--leading-normal);
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
   color: var(--color-ink);
 }
 
-/* Third-party marks ship on a white ground; multiply drops that ground onto
-   Eggshell without introducing a surface colour that is not in the palette. */
+/* Secondary line of a column — the role under a name, the hours under the
+   address. Separated by size, not by fading the ink further. */
+.columnMeta {
+  margin: var(--space-2xs) 0 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-ink-soft);
+}
+
+.link {
+  font-size: var(--text-md);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: color var(--dur-fast) var(--ease-out);
+
+  & + .link {
+    margin-block-start: var(--space-2xs);
+  }
+
+  &:hover {
+    color: var(--color-accent-deep);
+  }
+}
+
+/* -------------------------------------------------------- 3. credentials */
+
+/* Third-party marks get their own band rather than sharing the information
+   grid. In the grid they read as two facts that happen to be pictures; on
+   their own row, aligned to one baseline, they read as accreditation. */
+.credentials {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.credential {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* The marks ship on a white ground; multiply drops that ground onto Eggshell
+   without introducing a surface colour that is not in the palette. A shared
+   fixed height is what puts them on one baseline. */
 .mark {
   display: block;
   height: var(--logo-height-compact);
   width: auto;
-  margin-block-start: var(--space-3xs);
   mix-blend-mode: multiply;
 }
 
+/* -------------------------------------------------------------- 4. legal */
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2xs) var(--space-lg);
+}
+
+.legalText {
+  margin: 0;
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  color: var(--color-ink-soft);
+}
+
+/* --------------------------------------------------------- 5. responsive */
+
+@media (max-width: 60rem) {
+  /* The aside drops under the statement and re-anchors left, so the mast
+     stays a single left-aligned composition instead of splitting. */
+  .anchor {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .statement {
+    font-size: var(--text-2xl);
+  }
+}
+
+/* Two columns are held all the way down — never a single stacked list. */
 @media (max-width: 44rem) {
-  .details {
+  .info,
+  .credentials {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-md) var(--space-lg);
+    gap: var(--space-lg);
+  }
+
+  .info,
+  .credentials,
+  .legal {
+    margin-block-start: var(--space-lg);
+    padding-block-start: var(--space-lg);
   }
 }
 
 @media (max-width: 36rem) {
-  .details {
-    grid-template-columns: minmax(0, 1fr);
+  /* Half a column is narrower than the marks' natural width at this height,
+     so they scale down to fit rather than overflowing their cell. */
+  .mark {
+    max-width: 100%;
+    height: auto;
+    max-height: var(--logo-height-compact);
+    object-fit: contain;
+    object-position: left center;
   }
 }
