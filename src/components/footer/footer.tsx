@@ -1,17 +1,22 @@
 import Image from "next/image";
-import { MessageCircle } from "lucide-react";
+import { Instagram, Mail, MessageCircle } from "lucide-react";
 import styles from "./footer.module.scss";
 import { WHATSAPP_LINK } from "../../utils/utils";
 import Button from "../button/Button";
 import Logo from "../logo/logo";
+import { TikTokIcon } from "../icons/icons";
+import { connectLinks, exploreLinks } from "../data/skinLab.data";
+import type { ConnectId } from "../../interfaces/skinLab.types";
 import nmc from "../../assets/images/footer/nmc.jpeg";
 import dermaInstitute from "../../assets/images/footer/derma-institute.jpeg";
 
-const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#concerns", label: "Skin Concerns" },
-  { href: "#treatments", label: "Treatments" },
-];
+/* Decorative: the label beside each one already carries the meaning, so the
+   marks are hidden from assistive tech and inherit the link's colour. */
+const connectIcons: Record<ConnectId, React.ReactNode> = {
+  instagram: <Instagram size={16} strokeWidth={1.6} aria-hidden="true" />,
+  tiktok: <TikTokIcon className={styles.connectIcon} />,
+  email: <Mail size={16} strokeWidth={1.6} aria-hidden="true" />,
+};
 
 const Footer: React.FC = () => {
   return (
@@ -20,12 +25,7 @@ const Footer: React.FC = () => {
       <div className={styles.anchor}>
         <div className={styles.mast}>
           <Logo className={styles.logo} />
-          <p className={styles.statement}>
-            Healthy skin. Long term results.{" "}
-            <span className={styles.statementAccent}>
-              Expert clinical care.
-            </span>
-          </p>
+          <p className={styles.statement}>Science. Care. Results.</p>
         </div>
 
         <div className={styles.anchorAside}>
@@ -57,12 +57,35 @@ const Footer: React.FC = () => {
 
         <nav className={styles.column} aria-label="Footer">
           <h2 className={styles.columnLabel}>Explore</h2>
-          {navLinks.map((link) => (
-            <a key={link.href} className={styles.link} href={link.href}>
-              {link.label}
-            </a>
-          ))}
+          <div className={styles.columnList}>
+            {exploreLinks.map((link) => (
+              <a key={link.href} className={styles.link} href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </div>
         </nav>
+
+        <div className={styles.column}>
+          <h2 className={styles.columnLabel}>Connect</h2>
+          <div className={styles.columnList}>
+            {connectLinks.map((link) => (
+              <a
+                key={link.id}
+                className={`${styles.link} ${styles.connectLink}`}
+                href={link.href}
+                {...(link.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                <span className={styles.connectMark} aria-hidden="true">
+                  {connectIcons[link.id]}
+                </span>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* ---------------------------------------------------- credentials */}

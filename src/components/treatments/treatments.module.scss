@@ -81,6 +81,14 @@
   color: var(--color-ink-soft);
 }
 
+/* The plan description when it is carrying the card's distinguishing fact
+   rather than a supporting sentence: full ink, one step up in size. */
+.lead {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-ink);
+}
+
 .note {
   margin-block-start: var(--space-md);
   padding-block-start: var(--space-md);
@@ -155,7 +163,63 @@
   }
 }
 
+/* Circle benefits carry a description line each, so the single-line gap of
+   .includesList reads as one solid block here. */
+.benefitList {
+  margin-block-start: var(--space-md);
+  gap: var(--space-md);
+}
+
+.benefitDescription {
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+  color: var(--color-ink-soft);
+}
+
 .includeNote {
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+  font-style: italic;
+  color: var(--color-ink-soft);
+}
+
+/* --------------------------------------------------------------- pathways */
+
+/* Two alternative routes. They are set apart from the checklist below by a
+   left rule and their own label, so the card cannot be read as one cumulative
+   list of five things. */
+.pathways {
+  display: grid;
+  gap: var(--space-sm);
+  margin-block-start: var(--space-xs);
+}
+
+.pathway {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+
+  padding-inline-start: var(--space-xs);
+  border-inline-start: var(--hairline) solid var(--color-rule-strong);
+}
+
+.pathwayLabel {
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.pathwayText {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
+  color: var(--color-ink);
+}
+
+.pathwayNote {
   font-size: var(--text-xs);
   line-height: var(--leading-relaxed);
   font-style: italic;
@@ -346,14 +410,6 @@
 
 /* ----------------------------------------------------------- info cards */
 
-.infoGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-md);
-  align-items: start;
-  margin-block-start: var(--space-md);
-}
-
 .infoHeading {
   font-size: var(--text-xl);
   line-height: var(--leading-snug);
@@ -374,10 +430,6 @@
   font-size: var(--text-sm);
   line-height: var(--leading-loose);
   color: var(--color-ink-soft);
-}
-
-.infoList {
-  margin-block-start: var(--space-md);
 }
 
 /* ------------------------------------------------------- closing band */
@@ -451,10 +503,6 @@
 
   .benefitsCard {
     grid-column: auto;
-  }
-
-  .infoGrid {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .closingInner {

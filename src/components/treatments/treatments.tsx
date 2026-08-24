@@ -1,13 +1,16 @@
 import SectionTitle from "../sectionTitle/sectionTitle";
 import styles from "./treatments.module.scss";
 import type {
+  CircleBenefit,
   IncludeItem,
-  InfoList,
   Membership,
   MetaBox,
+  Pathway,
   TreatmentsContent,
 } from "../../interfaces/skinLab.types";
 import BookConsultationButton from "../bookConsultationButton/BookConsultationButton";
+import Faq from "../faq/faq";
+import { faqClosing, faqItems } from "../data/skinLab.data";
 
 import {
   AccessTimeIcon,
@@ -20,18 +23,44 @@ interface Props {
   content: TreatmentsContent;
 }
 
+/* One of two alternative routes through a plan. Rendered as a labelled block
+   above the shared checklist, never as a checklist item: as a check row it
+   would read as "4 peels AND 3 microneedling", which is not what is sold. */
+function PathwayBlock({ pathway }: { pathway: Pathway }) {
+  return (
+    <div className={styles.pathway}>
+      <div className={styles.pathwayLabel}>{pathway.label}</div>
+      <span className={styles.pathwayText}>{pathway.text}</span>
+      {pathway.note ? (
+        <em className={styles.pathwayNote}>{pathway.note}</em>
+      ) : null}
+    </div>
+  );
+}
+
 function IncludeList({
   heading,
   items,
+  pathways,
   variant = "check",
 }: {
   heading: string;
   items: IncludeItem[];
+  pathways?: Pathway[];
   variant?: "check" | "dash";
 }) {
   return (
     <div className={styles.includes}>
       <div className={styles.includesHeading}>{heading}</div>
+
+      {pathways?.length ? (
+        <div className={styles.pathways}>
+          {pathways.map((pathway) => (
+            <PathwayBlock key={pathway.label} pathway={pathway} />
+          ))}
+        </div>
+      ) : null}
+
       <ul className={styles.includesList}>
         {items.map((item) => (
           <li key={item.text} className={styles.includeItem}>
@@ -80,36 +109,25 @@ function MetaBoxRow({ box }: { box: MetaBox }) {
   );
 }
 
-function CheckList({ items }: { items: string[] }) {
+/* Circle benefits: title on the first line, one supporting line beneath. The
+   check sits on the title's line, not centred on the two-line block. */
+function BenefitList({ items }: { items: CircleBenefit[] }) {
   return (
-    <ul className={`${styles.includesList} ${styles.infoList}`}>
+    <ul className={`${styles.includesList} ${styles.benefitList}`}>
       {items.map((item) => (
-        <li key={item} className={styles.includeItem}>
+        <li key={item.title} className={styles.includeItem}>
           <CheckCircleOutlineIcon className={styles.includeIcon} />
           <div className={styles.includeBody}>
-            <span className={styles.includeText}>{item}</span>
+            <span className={`${styles.includeText} ${styles.strong}`}>
+              {item.title}
+            </span>
+            <span className={styles.benefitDescription}>
+              {item.description}
+            </span>
           </div>
         </li>
       ))}
     </ul>
-  );
-}
-
-function InfoListCard({
-  list,
-  className,
-}: {
-  list: InfoList;
-  className?: string;
-}) {
-  return (
-    <div className={className ? `${styles.card} ${className}` : styles.card}>
-      <h3 className={styles.infoHeading}>{list.heading}</h3>
-      {list.subtitle ? (
-        <p className={styles.infoSubtitle}>{list.subtitle}</p>
-      ) : null}
-      <CheckList items={list.items} />
-    </div>
   );
 }
 
@@ -134,7 +152,7 @@ function MembershipCard({
       <div className={styles.divider} />
 
       <div className={styles.includesHeading}>{membership.benefitsHeading}</div>
-      <CheckList items={membership.benefits} />
+      <BenefitList items={membership.benefits} />
 
       <div className={styles.divider} />
 
@@ -151,11 +169,9 @@ export default function TreatmentsSection({ content }: Props) {
     signaturePlan,
     plansHeading,
     plans,
-    plansBenefits,
     sessionsHeading,
     sessions,
     consultation,
-    infoLists,
     membership,
   } = content;
 
@@ -207,7 +223,19 @@ export default function TreatmentsSection({ content }: Props) {
                 <span className={styles.price}>{plan.price}</span>
               </div>
 
-              <p className={styles.text}>{plan.description}</p>
+              {/* On a plan with alternative pathways the description carries
+                  the distinguishing fact — that the route is chosen after the
+                  clinical assessment — so it is set as lead copy, not as the
+                  usual secondary paragraph. */}
+              <p
+                className={
+                  plan.pathways?.length
+                    ? `${styles.text} ${styles.lead}`
+                    : styles.text
+                }
+              >
+                {plan.description}
+              </p>
               {plan.performedWith ? (
                 <p className={styles.text}>{plan.performedWith}</p>
               ) : null}
@@ -215,6 +243,7 @@ export default function TreatmentsSection({ content }: Props) {
               <IncludeList
                 heading={plan.includesHeading}
                 items={plan.includes}
+                pathways={plan.pathways}
               />
 
               <div className={styles.metaGroup}>
@@ -223,7 +252,9 @@ export default function TreatmentsSection({ content }: Props) {
                 ))}
               </div>
 
-              <p className={styles.note}>{plan.footerNote}</p>
+              {plan.footerNote ? (
+                <p className={styles.note}>{plan.footerNote}</p>
+              ) : null}
             </article>
           ))}
 
@@ -277,12 +308,7 @@ export default function TreatmentsSection({ content }: Props) {
           <p className={styles.consultationNote}>{consultation.boldNote}</p>
         </div>
 
-        <div className={styles.infoGrid}>
-          {infoLists.map((list) => (
-            <InfoListCard key={list.heading} list={list} />
-          ))}
-          <InfoListCard list={plansBenefits} />
-        </div>
+        <Faq items={faqItems} closing={faqClosing} />
       </div>
 
       {/* The page's one dark band: full bleed, still part of Treatments. */}

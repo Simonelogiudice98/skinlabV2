@@ -24,16 +24,21 @@
   width: auto;
 }
 
+/* Five text links plus the CTA. The gap tightens with the viewport instead of
+   dropping to another breakpoint, so the row never wraps and the booking
+   button is never the thing that gives way. */
 .links {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: var(--space-lg);
+  gap: clamp(var(--space-sm), 1.6vw, var(--space-lg));
 }
 
 /* Wrapper exists only so the CTA can be collapsed into the burger panel at
    narrow widths without the button component having to know about it. */
 .cta {
   display: inline-flex;
+  flex-shrink: 0;
 }
 
 /* Nav items are micro-labels, like every other small label in the system. */
@@ -42,6 +47,7 @@
   font-weight: var(--weight-medium);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
+  white-space: nowrap;
   text-decoration: none;
   color: var(--color-ink-soft);
   transition: color var(--dur-fast) var(--ease-out);

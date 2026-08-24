@@ -1,5 +1,9 @@
 import type {
   Concern,
+  ConnectLink,
+  FaqClosing,
+  FaqItem,
+  NavLink,
   PhilosophyPillar,
   TreatmentsContent,
 } from "../../interfaces/skinLab.types.ts";
@@ -52,7 +56,7 @@ export const treatmentsContent: TreatmentsContent = {
   signaturePlan: {
     badge: "Signature Treatment Plan",
     title: "Complete Skin Transformation Plan",
-    price: "£2,200",
+    price: "£2,050",
     paragraphs: [
       "Our most comprehensive treatment plan combines clinical microneedling and medical grade chemical peels to improve acne scarring, hyperpigmentation and uneven skin texture.",
       "Using evidence based Mesoestetic treatment protocols, your plan is tailored to your individual skin concerns to achieve safe, long lasting results.",
@@ -80,7 +84,7 @@ export const treatmentsContent: TreatmentsContent = {
   plans: [
     {
       title: "Skin Clarity Plan",
-      price: "£1,050",
+      price: "£750",
       description:
         "Designed for mild hyperpigmentation, post inflammatory pigmentation and uneven skin tone.",
       includesHeading: "Includes:",
@@ -101,32 +105,47 @@ export const treatmentsContent: TreatmentsContent = {
         "Most clients see significant improvement after 3–5 treatments. Your treatment plan will be tailored during your consultation.",
     },
     {
-      title: "Acne Scar Plan",
-      price: "£1,050",
+      title: "Skin Renewal Plan",
+      price: "£950",
       description:
-        "Designed for mild to moderate acne scarring, enlarged pores and uneven skin texture.",
-      performedWith:
-        "Performed using the Mesoestetic Axion Professional Microneedling System.",
+        "A tailored treatment programme designed to improve skin quality, with your pathway selected according to your individual skin assessment and goals.",
       includesHeading: "Includes:",
-      includes: [
+      /* Two routes, one plan. They are alternatives, never cumulative, which
+         is why they live outside `includes` — the checklist below is what both
+         routes share. */
+      pathways: [
         {
-          text: "3 Clinical Microneedling treatments",
-          note: "Includes treatment of the face and neck",
+          label: "Peel Pathway",
+          text: "4 Clinical Chemical Peel sessions",
+          note: "Each peel is individually selected and adjusted throughout your plan based on your skin's response.",
         },
+        {
+          label: "Microneedling Pathway",
+          text: "3 Clinical Microneedling treatments",
+          note: "Includes treatment of the face + neck.",
+        },
+      ],
+      includes: [
         { text: "Personalised treatment plan" },
         { text: "Progress reviews" },
         { text: "Homecare recommendations" },
       ],
       metaBoxes: [
-        { heading: "Treatment Frequency", lines: ["Every 4–6 weeks"] },
-        { heading: "Treatment Plan", lines: ["3 treatments"] },
+        {
+          heading: "Treatment Frequency",
+          lines: ["Every 3–6 weeks"],
+          note: "Treatment intervals are tailored to your skin, treatment pathway and response.",
+        },
+        {
+          heading: "Treatment Plan",
+          lines: ["4 Clinical Peels or 3 Microneedling Treatments"],
+          note: "Your recommended pathway will be determined following your clinical skin assessment.",
+        },
       ],
-      footerNote:
-        "Based on your skin assessment, an additional 1–2 treatments may be recommended to achieve optimal results, in line with Mesoestetic treatment protocols.",
     },
     {
-      title: "Advanced Scar Revision Plan",
-      price: "£1,350",
+      title: "Intensive Skin Renewal",
+      price: "£1,250",
       description:
         "Designed for moderate to advanced acne scarring and textural concerns.",
       performedWith:
@@ -149,17 +168,6 @@ export const treatmentsContent: TreatmentsContent = {
         "Some clients may benefit from a fifth treatment depending on scar severity and treatment response.",
     },
   ],
-
-  plansBenefits: {
-    heading: "Preferred Client Benefits",
-    subtitle: "Clients who complete a Skin Treatment Plan receive:",
-    items: [
-      "10% Preferred Client Rate on all future individual maintenance treatments",
-      "Ongoing clinical skin reviews",
-      "Personalised homecare recommendations",
-      "Priority booking for maintenance appointments",
-    ],
-  },
 
   sessionsHeading: "Single Treatment Sessions",
   sessions: [
@@ -207,22 +215,6 @@ export const treatmentsContent: TreatmentsContent = {
       "Consultation fee redeemable against treatment or plan booked within 30 days.",
   },
 
-  infoLists: [
-    {
-      heading: "Why choose The Medical Skin Lab?",
-      items: [
-        "Registered Nurse led Skin Clinic",
-        "Specialist in Acne Scarring & Hyperpigmentation",
-        "Medical grade Mesoestetic products",
-        "Mesoestetic Axion Professional Microneedling System",
-        "Every chemical peel is tailored to your skin on the day of treatment",
-        "Crystal Fibre Mask included with every chemical peel",
-        "Face and neck included with every microneedling treatment",
-        "Evidence based Mesoestetic treatment protocols",
-      ],
-    },
-  ],
-
   membership: {
     heading: "The Medical Skin Lab Circle",
     subtitle:
@@ -233,16 +225,127 @@ export const treatmentsContent: TreatmentsContent = {
     ],
     benefitsHeading: "As a Circle Member, you'll enjoy:",
     benefits: [
-      "10% Member Pricing on all individual maintenance treatments",
-      "Complimentary Annual Clinical Skin Review",
-      "Priority Booking for maintenance appointments",
-      "Personalised Homecare Recommendations",
-      "Birthday Glow Gift",
-      "Exclusive Christmas Thank You Gift",
-      "Complimentary Progress Photography during your maintenance appointments",
+      {
+        title: "10% Member Pricing",
+        description: "Receive 10% off future individual maintenance treatments.",
+      },
+      {
+        title: "Complimentary Annual Clinical Skin Review",
+        description:
+          "A yearly opportunity to reassess your skin and treatment needs.",
+      },
+      {
+        title: "Priority Booking",
+        description: "Priority access to maintenance appointments.",
+      },
+      {
+        title: "Personalised Homecare Recommendations",
+        description:
+          "Ongoing guidance to help support your results at home.",
+      },
+      {
+        title: "Complimentary Progress Photography",
+        description:
+          "Track your skin's progress during maintenance appointments.",
+      },
+      {
+        title: "Birthday Skin Gift",
+        description: "A little something from us on your birthday.",
+      },
+      {
+        title: "Exclusive Christmas Thank You Gift",
+        description:
+          "A seasonal thank you for being part of the Medical Skin Lab Circle.",
+      },
     ],
     membershipHeading: "Membership",
     membershipText:
       "Membership is complimentary and exclusively available to clients who successfully complete a Medical Skin Lab Skin Treatment Plan.",
   },
 };
+
+export const faqItems: FaqItem[] = [
+  {
+    question: "Do I need a consultation before treatment?",
+    answer:
+      "Yes. Every client begins with a consultation so we can understand your skin, medical history and goals before recommending treatment.",
+  },
+  {
+    question: "How do I know which treatment is right for me?",
+    answer:
+      "You don't need to choose. We'll assess your skin and recommend the most appropriate treatment or combination based on your individual needs.",
+  },
+  {
+    question: "How many treatments will I need?",
+    answer:
+      "This depends on your skin and goals. Your recommended number and frequency of treatments will be discussed during your consultation.",
+  },
+  {
+    question: "Which chemical peel will I receive?",
+    answer:
+      "Your peel is selected according to your skin's condition and goals. This may change throughout your treatment journey as your skin changes.",
+  },
+  {
+    question: "Does microneedling include the neck?",
+    answer:
+      "Yes. The face and neck are included in every Clinical Microneedling treatment at no additional cost.",
+  },
+  {
+    question: "Is there any downtime?",
+    answer:
+      "Downtime varies depending on the treatment and your individual response. You'll receive personalised aftercare guidance to support your skin's recovery.",
+  },
+  {
+    question: "Can I have treatment if I'm using active skincare?",
+    answer:
+      "This depends on the products you're using. We'll review your current skincare and advise you on anything that may need to be paused.",
+  },
+  {
+    question: "What happens after I complete my treatment plan?",
+    answer:
+      "You may be invited to join The Medical Skin Lab Circle, our complimentary maintenance programme designed to support your skin beyond your initial treatment journey.",
+  },
+];
+
+export const faqClosing: FaqClosing = {
+  title: "Still not sure what's right for your skin?",
+  text: "You don't need to know which treatment to book. We'll assess your skin and create a plan around you.",
+};
+
+/* One list of in-page anchors for the whole site. The footer shows all six;
+   the header drops Home because the logo already does that job. */
+export const exploreLinks: NavLink[] = [
+  { href: "#top", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#concerns", label: "Skin Concerns" },
+  { href: "#treatments", label: "Treatments" },
+  { href: "#journey", label: "Your Skin Journey" },
+  { href: "#faq", label: "FAQs" },
+];
+
+export const headerNavLinks: NavLink[] = exploreLinks.filter(
+  (link) => link.label !== "Home",
+);
+
+/* The trailing underscore exists on the TikTok handle only — the Instagram
+   handle does not have one. Do not normalise the two. */
+export const connectLinks: ConnectLink[] = [
+  {
+    id: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/themedicalskinlab",
+    external: true,
+  },
+  {
+    id: "tiktok",
+    label: "TikTok",
+    href: "https://www.tiktok.com/@themedicalskinlab_",
+    external: true,
+  },
+  {
+    id: "email",
+    label: "Email",
+    href: "mailto:themedicalskinlab@gmail.com",
+    external: false,
+  },
+];

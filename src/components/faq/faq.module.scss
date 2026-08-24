@@ -1,0 +1,169 @@
+/* The FAQ sits inside the Treatments band, in the slot the two removed cards
+   used to occupy, so it borrows that section's own furniture: the hairline
+   flanked group label, and the same Eggshell card on Oat Latte. */
+
+.section {
+  scroll-margin-top: var(--scroll-offset);
+}
+
+.ruleLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+
+  margin-block: var(--section-y-tight) var(--space-md);
+
+  font-family: var(--family-sans);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label-lg);
+  line-height: var(--leading-normal);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1 1 var(--space-lg);
+    height: var(--hairline);
+    background: var(--color-rule-strong);
+  }
+}
+
+.standfirst {
+  margin-block-end: var(--space-2xl);
+  text-align: center;
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink-soft);
+  text-wrap: balance;
+}
+
+/* Same card as every other card in this section. */
+.card {
+  display: flex;
+  flex-direction: column;
+
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: var(--hairline) solid var(--color-rule);
+  background: var(--color-bg);
+}
+
+/* ------------------------------------------------------------- accordion */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Same hairline the cards use between their own blocks. */
+.item + .item {
+  border-block-start: var(--hairline) solid var(--color-rule);
+}
+
+.question {
+  /* The row is the target, so it owns the full width and the 44px minimum. */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  min-height: 2.75rem;
+
+  margin: 0;
+  padding-block: var(--space-sm);
+  padding-inline: 0;
+  border: 0;
+  background: none;
+  text-align: start;
+  cursor: pointer;
+
+  color: var(--color-ink);
+  transition: color var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    color: var(--color-accent-deep);
+  }
+}
+
+.questionText {
+  font-family: var(--family-sans);
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--color-accent-deep);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* 0fr -> 1fr animates the row to the panel's natural height without a fixed
+   value, and the inner element is what clips during the transition. */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-base) var(--ease-out);
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+}
+
+.panelInner {
+  overflow: hidden;
+}
+
+.answer {
+  max-width: var(--measure);
+  padding-block-end: var(--space-md);
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  color: var(--color-ink-soft);
+}
+
+/* --------------------------------------------------------- closing card */
+
+.closingCard {
+  /* The gap already used between adjacent cards in this section. */
+  margin-block-start: var(--space-md);
+  align-items: flex-start;
+}
+
+.closingTitle {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+.closingText {
+  margin-block-start: var(--space-2xs);
+  max-width: var(--measure);
+  font-size: var(--text-sm);
+  line-height: var(--leading-loose);
+  color: var(--color-ink-soft);
+}
+
+.closingCta {
+  margin-block-start: var(--space-md);
+}
+
+@media (max-width: 44rem) {
+  .card {
+    padding: var(--space-md);
+  }
+
+  .questionText {
+    font-size: var(--text-base);
+  }
+}

@@ -9,14 +9,12 @@ const HeroSection: React.FC = () => {
     <main id="top" className={styles.hero}>
       <div className={styles.inner}>
         <div className={styles.copy}>
-          <p className={styles.eyebrow}>
-            Medically led • Results driven • Personalised to you
-          </p>
+          <p className={styles.eyebrow}>Science. Care. Results.</p>
 
           <h1 className={styles.title}>
             Medical Skin Treatments for{" "}
             <span className={styles.accent}>
-              Hyperpigmentation, Acne Scarring & Rosacea
+              Hyperpigmentation, Acne Scarring & Uneven Skin Texture
             </span>
           </h1>
 

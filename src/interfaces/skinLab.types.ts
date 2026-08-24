@@ -26,6 +26,14 @@ export type IncludeItem = {
   strong?: boolean;
 };
 
+/* Two mutually exclusive routes through the same plan. Kept apart from
+   IncludeItem so the card can never render them as one cumulative list. */
+export type Pathway = {
+  label: string;
+  text: string;
+  note?: string;
+};
+
 export type MetaBox = {
   heading: string;
   lines: string[];
@@ -48,9 +56,12 @@ export interface PlanCard {
   description: string;
   performedWith?: string;
   includesHeading: string;
+  /** Present only on plans offering alternative routes; rendered above the
+      shared checklist and never merged into it. */
+  pathways?: Pathway[];
   includes: IncludeItem[];
   metaBoxes: MetaBox[];
-  footerNote: string;
+  footerNote?: string;
 }
 
 export interface SessionCard {
@@ -70,10 +81,10 @@ export interface ConsultationBox {
   boldNote: string;
 }
 
-export interface InfoList {
-  heading: string;
-  subtitle?: string;
-  items: string[];
+/** A Circle benefit is a title plus one supporting line. */
+export interface CircleBenefit {
+  title: string;
+  description: string;
 }
 
 export interface Membership {
@@ -81,7 +92,7 @@ export interface Membership {
   subtitle: string;
   intro: string[];
   benefitsHeading: string;
-  benefits: string[];
+  benefits: CircleBenefit[];
   membershipHeading: string;
   membershipText: string;
 }
@@ -90,18 +101,43 @@ export interface TreatmentsContent {
   signaturePlan: SignaturePlan;
   plansHeading: string;
   plans: PlanCard[];
-  plansBenefits: InfoList;
   sessionsHeading: string;
   sessions: SessionCard[];
   consultation: ConsultationBox;
-  infoLists: InfoList[];
   membership: Membership;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface FaqClosing {
+  title: string;
+  text: string;
 }
 
 export type PhilosophyPillar = {
   title: string;
   paragraphs: string[];
 };
+
+/** One in-page anchor, shared by the header nav and the footer's Explore list
+    so the two can never drift apart. */
+export interface NavLink {
+  href: string;
+  label: string;
+}
+
+export type ConnectId = "instagram" | "tiktok" | "email";
+
+export interface ConnectLink {
+  id: ConnectId;
+  label: string;
+  href: string;
+  /** Social profiles open in a new tab; the mailto: does not. */
+  external: boolean;
+}
 
 export interface SmartImageProps  {
  avif?: string;

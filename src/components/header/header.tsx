@@ -2,6 +2,7 @@ import styles from "./header.module.scss";
 import Logo from "../logo/logo";
 import BookConsultationButton from "../bookConsultationButton/BookConsultationButton";
 import MobileNav from "../mobileNav/mobileNav";
+import { headerNavLinks } from "../data/skinLab.data";
 
 const Header: React.FC = () => {
   return (
@@ -10,15 +11,11 @@ const Header: React.FC = () => {
         <Logo className={styles.logo} />
 
         <div className={styles.links}>
-          <a className={styles.link} href="#about">
-            About
-          </a>
-          <a className={styles.link} href="#concerns">
-            Skin Concerns
-          </a>
-          <a className={styles.link} href="#treatments">
-            Treatments
-          </a>
+          {headerNavLinks.map((link) => (
+            <a key={link.href} className={styles.link} href={link.href}>
+              {link.label}
+            </a>
+          ))}
           <span className={styles.cta}>
             <BookConsultationButton />
           </span>

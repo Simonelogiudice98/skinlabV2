@@ -108,7 +108,7 @@ function OrbitCircleIcon(props: IconProps) {
 
 export default function ClientJourneyMini() {
   return (
-    <section className={styles.journey} aria-label="Your Skin Journey">
+    <section id="journey" className={styles.journey} aria-label="Your Skin Journey">
       <h2 className={styles.ruleLabel}>Your Skin Journey</h2>
 
       <div className={styles.grid}>

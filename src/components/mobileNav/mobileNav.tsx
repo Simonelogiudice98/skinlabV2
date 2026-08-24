@@ -4,12 +4,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import styles from "./mobileNav.module.scss";
 import BookConsultationButton from "../bookConsultationButton/BookConsultationButton";
-
-const LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#concerns", label: "Skin Concerns" },
-  { href: "#treatments", label: "Treatments" },
-];
+import { headerNavLinks } from "../data/skinLab.data";
 
 const PANEL_ID = "mobile-nav-panel";
 
@@ -76,7 +71,7 @@ const MobileNav: React.FC = () => {
               </button>
             </div>
 
-            {LINKS.map((link) => (
+            {headerNavLinks.map((link) => (
               <a
                 key={link.href}
                 className={styles.link}
