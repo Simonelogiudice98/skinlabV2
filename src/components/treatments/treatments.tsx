@@ -189,14 +189,17 @@ export default function TreatmentsSection({ content }: Props) {
               </div>
               <h3 className={styles.signatureTitle}>{signaturePlan.title}</h3>
             </div>
-            <span className={`${styles.price} ${styles.signaturePrice}`}>
-              {signaturePlan.price}
-            </span>
+            <div className={styles.signaturePriceBlock}>
+              <span className={`${styles.price} ${styles.signaturePrice}`}>
+                {signaturePlan.price}
+              </span>
+              {signaturePlan.savingsNote ? (
+                <p className={`${styles.savings} ${styles.savingsEnd}`}>
+                  {signaturePlan.savingsNote}
+                </p>
+              ) : null}
+            </div>
           </div>
-
-          {signaturePlan.savingsNote ? (
-            <p className={styles.savings}>{signaturePlan.savingsNote}</p>
-          ) : null}
 
           <div className={styles.signatureBody}>
             <div className={styles.signatureMain}>
