@@ -57,6 +57,7 @@ export const treatmentsContent: TreatmentsContent = {
     badge: "Signature Treatment Plan",
     title: "Complete Skin Transformation Plan",
     price: "£2,050",
+    savingsNote: "Save £450 compared with individual treatment",
     paragraphs: [
       "Our most comprehensive treatment plan combines clinical microneedling and medical grade chemical peels to improve acne scarring, hyperpigmentation and uneven skin texture.",
       "Using evidence based Mesoestetic treatment protocols, your plan is tailored to your individual skin concerns to achieve safe, long lasting results.",
@@ -85,6 +86,7 @@ export const treatmentsContent: TreatmentsContent = {
     {
       title: "Skin Clarity Plan",
       price: "£750",
+      savingsNote: "Save £75 compared with individual treatments",
       description:
         "Designed for mild hyperpigmentation, post inflammatory pigmentation and uneven skin tone.",
       includesHeading: "Includes:",
@@ -107,6 +109,7 @@ export const treatmentsContent: TreatmentsContent = {
     {
       title: "Skin Renewal Plan",
       price: "£950",
+      savingsNote: "Save up to £150 compared with individual treatments",
       description:
         "A tailored treatment programme designed to improve skin quality, with your pathway selected according to your individual skin assessment and goals.",
       includesHeading: "Includes:",
@@ -146,6 +149,7 @@ export const treatmentsContent: TreatmentsContent = {
     {
       title: "Intensive Skin Renewal",
       price: "£1,250",
+      savingsNote: "Save £150 compared with individual treatments",
       description:
         "Designed for moderate to advanced acne scarring and textural concerns.",
       performedWith:

@@ -194,6 +194,10 @@ export default function TreatmentsSection({ content }: Props) {
             </span>
           </div>
 
+          {signaturePlan.savingsNote ? (
+            <p className={styles.savings}>{signaturePlan.savingsNote}</p>
+          ) : null}
+
           <div className={styles.signatureBody}>
             <div className={styles.signatureMain}>
               {signaturePlan.paragraphs.map((p) => (
@@ -222,6 +226,10 @@ export default function TreatmentsSection({ content }: Props) {
                 <h4 className={styles.cardTitle}>{plan.title}</h4>
                 <span className={styles.price}>{plan.price}</span>
               </div>
+
+              {plan.savingsNote ? (
+                <p className={styles.savings}>{plan.savingsNote}</p>
+              ) : null}
 
               <p className={styles.text}>{plan.description}</p>
               {plan.performedWith ? (

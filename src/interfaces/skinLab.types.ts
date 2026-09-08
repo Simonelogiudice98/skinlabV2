@@ -44,6 +44,10 @@ export interface SignaturePlan {
   badge: string;
   title: string;
   price: string;
+  /** Saving over booking the same treatments individually, rendered under the
+      price. Wording is the client's and differs deliberately from card to
+      card — never normalise it. */
+  savingsNote?: string;
   paragraphs: string[];
   includesHeading: string;
   includes: IncludeItem[];
@@ -53,6 +57,10 @@ export interface SignaturePlan {
 export interface PlanCard {
   title: string;
   price: string;
+  /** Saving over booking the same treatments individually, rendered under the
+      price. Wording is the client's and differs deliberately from card to
+      card — never normalise it. */
+  savingsNote?: string;
   description: string;
   performedWith?: string;
   includesHeading: string;

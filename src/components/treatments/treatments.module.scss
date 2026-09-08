@@ -74,6 +74,18 @@
   white-space: nowrap;
 }
 
+/* The saving sits under the price and is set in the same sage: it reads as a
+   continuation of the price, not as one more note among the card's others.
+   Tighter top margin than .text so it stays attached to the row above. */
+.savings {
+  margin-block-start: var(--space-xs);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  font-style: italic;
+  line-height: var(--leading-relaxed);
+  color: var(--color-accent-deep);
+}
+
 .text {
   margin-block-start: var(--space-sm);
   font-size: var(--text-sm);
