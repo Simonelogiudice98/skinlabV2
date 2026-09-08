@@ -48,6 +48,13 @@
   text-wrap: balance;
 }
 
+.amp {
+  /* Playfair's italic ampersand is a swash form: far more conspicuous than
+     the letters around it. Only the style returns to roman — family, size,
+     weight and colour stay inherited from the accent line. */
+  font-style: normal;
+}
+
 .lead {
   max-width: var(--measure);
   font-size: var(--text-md);
