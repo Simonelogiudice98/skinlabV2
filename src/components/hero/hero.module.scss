@@ -1,4 +1,9 @@
 .hero {
+  /* #top target for the logo and the footer's Home link. The offset is
+     larger than the hero's distance from the document top, so the scroll
+     clamps to 0 and the sticky header is never left covering the eyebrow. */
+  scroll-margin-top: var(--scroll-offset);
+
   /* Eggshell ground. The two radial gradients that used to sit here are gone:
      separation now comes from the tonal step into the Oat Latte band below. */
   background: var(--color-bg);
@@ -46,6 +51,13 @@
   display: block;
   font-style: italic;
   text-wrap: balance;
+}
+
+.roman {
+  /* The conjunction is set upright so it matches "Skin" on the roman line
+     above. Only the style resets — family, size, weight, tracking and colour
+     stay inherited from .accent, so the word is the same face as line one. */
+  font-style: normal;
 }
 
 .lead {

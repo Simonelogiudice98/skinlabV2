@@ -18,6 +18,13 @@
   gap: var(--space-md);
 }
 
+/* The wordmark is the site's home link: the header nav drops its own "Home"
+   entry because of it (see exploreLinks in skinLab.data.ts). inline-flex so
+   the anchor wraps the SVG exactly, with no inline-baseline gap under it. */
+.logoLink {
+  display: inline-flex;
+}
+
 .logo {
   display: block;
   height: var(--logo-height);

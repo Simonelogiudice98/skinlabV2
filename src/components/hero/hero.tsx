@@ -14,7 +14,8 @@ const HeroSection: React.FC = () => {
           <h1 className={styles.title}>
             Medical Skin Treatments for{" "}
             <span className={styles.accent}>
-              Hyperpigmentation, Acne Scarring and Uneven Skin Texture
+              Hyperpigmentation, Acne Scarring{" "}
+              <span className={styles.roman}>and</span> Uneven Skin Texture
             </span>
           </h1>
 

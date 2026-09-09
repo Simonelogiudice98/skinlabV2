@@ -92,7 +92,7 @@ export const treatmentsContent: TreatmentsContent = {
       includesHeading: "Includes:",
       includes: [
         {
-          text: "4 Clinical Chemical Peel sessions",
+          text: "3 Clinical Chemical Peel sessions",
           note: "Each peel is individually selected and adjusted throughout your plan based on your skin's progress",
         },
         { text: "Personalised treatment plan" },
@@ -101,7 +101,7 @@ export const treatmentsContent: TreatmentsContent = {
       ],
       metaBoxes: [
         { heading: "Treatment Frequency", lines: ["Every 3–4 weeks"] },
-        { heading: "Treatment Plan", lines: ["4 treatments"] },
+        { heading: "Treatment Plan", lines: ["3 treatments"] },
       ],
       footerNote:
         "Most clients see significant improvement after 3–5 treatments. Your treatment plan will be tailored during your consultation.",

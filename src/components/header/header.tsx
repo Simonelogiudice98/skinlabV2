@@ -8,7 +8,9 @@ const Header: React.FC = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        <Logo className={styles.logo} />
+        <a className={styles.logoLink} href="#top">
+          <Logo className={styles.logo} />
+        </a>
 
         <div className={styles.links}>
           {headerNavLinks.map((link) => (
